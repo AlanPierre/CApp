@@ -1,0 +1,35 @@
+<div class="nested-fields">
+<div class="col-md-12">    
+<div class="pull-right">
+<%= link_to_remove_association f  do%>
+    <span >×</span>
+<% end %>
+</div>
+</div>
+        <div class="col-sm-2">
+            <%= f.input :quantidade, input_html: { class: 'quantidade',  onkeyup: "SomarItens()" } %>
+        </div>
+        <div class="col-sm-3">
+            <%var = "produto_" + (Random.rand(10...42)).to_s %>
+             <%= f.input :produto_id, collection: Produto.where(active: true), input_html: { id: var, onchange: "DynamicSelect()"  }, :include_blank => false %>
+        </div>
+        <div class="col-sm-3">
+            <%= f.input :material_id, collection: Material.where(active: true),input_html: { 
+                         "data-option-dependent" => true,
+                         "data-option-observed" => var,
+                         "data-option-url" => "/produto/:produto_id:/materials.json",
+                         "data-option-key-method" => :id,
+                         "data-option-value-method" => :name } %>
+         </div>        
+        <div class="col-sm-2">
+            <%= f.input :valor,:label => "Valor unitário", input_html: { class: 'valor',   onkeyup: "SomarItens()" } %>
+        </div>
+         <div class="col-sm-2">
+        <%= f.input :subtotal, :disabled => true, input_html: { class: 'subtotal' } %> 
+
+        </div>
+    
+</div>
+
+
+

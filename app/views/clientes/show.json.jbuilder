@@ -1,0 +1,1 @@
+json.extract! @cliente, :id, :nome_fantasia, :razao_social, :cnpj, :inscricao_municipal, :inscricao_estadual, :cliente_faturamento_id, :cliente_status_id, :user_id, :observacao, :notificao, :created_at, :updated_at

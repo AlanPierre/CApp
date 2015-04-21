@@ -1,0 +1,8 @@
+<% if activity.trackable %>
+<%= link_to edit_cliente_path(activity.trackable) do%>
+
+<p>atualizou o cadastro de <%= activity.trackable.nome_fantasia %> </p>
+<% end %>
+<% else %>
+  which has since been removed 
+<% end %>

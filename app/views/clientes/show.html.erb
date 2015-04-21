@@ -1,0 +1,47 @@
+<p>
+  <strong>Nome fantasia:</strong>
+  <%= @cliente.nome_fantasia %>
+</p>
+
+<p>
+  <strong>Razao social:</strong>
+  <%= @cliente.razao_social %>
+</p>
+
+<p>
+  <strong>Cnpj:</strong>
+  <%= @cliente.cnpj %>
+</p>
+
+<p>
+  <strong>Inscrição Municipal:</strong>
+  <%= @cliente.inscricao_municipal %>
+</p>
+
+<p>
+  <strong>Inscrição Estadual:</strong>
+  <%= @cliente.inscricao_estadual %>
+</p>
+
+<p>
+  <strong>Tipo de Faturamento:</strong>
+  <%= @cliente.cliente_faturamento.name if @cliente.cliente_faturamento%>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @cliente.cliente_status.name if @cliente.cliente_status%>
+</p>
+
+<p>
+  <strong>Vendedor:</strong>
+  <%= @cliente.user.name if @cliente.user %>
+</p>
+
+<p>
+  <strong>Observação:</strong>
+  <%= @cliente.observacao %>
+</p>
+
+
+

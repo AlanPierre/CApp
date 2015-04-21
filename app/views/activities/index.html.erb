@@ -1,0 +1,28 @@
+<ul class="timeline">
+
+    <% @activities.each do |activity| %>  
+    
+    <li>
+        <!-- timeline icon -->
+        <i class="fa fa-envelope bg-blue"></i>
+        <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words (activity.created_at)%></span>
+
+            <h3 class="timeline-header"><a href="#"><%= activity.owner.name if activity.owner %> </a></h3>
+
+            <div class="timeline-body">
+                       <%= render_activity activity %>
+            
+            </div>
+
+        </div>
+    </li>
+    <% end %> 
+
+
+</ul>
+
+
+
+
+    

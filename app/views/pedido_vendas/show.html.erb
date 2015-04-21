@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @pedido_venda.user_id %>
+</p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @pedido_venda.cliente_id %>
+</p>
+
+<p>
+  <strong>Data solicitacao:</strong>
+  <%= @pedido_venda.data_solicitacao %>
+</p>
+
+<p>
+  <strong>Detalhes:</strong>
+  <%= @pedido_venda.detalhes %>
+</p>
+
+<p>
+  <strong>Recibo:</strong>
+  <%= @pedido_venda.recibo %>
+</p>
+
+<p>
+  <strong>Nota fiscal:</strong>
+  <%= @pedido_venda.nota_fiscal %>
+</p>
+
+<p>
+  <strong>Forma pagamento:</strong>
+  <%= @pedido_venda.forma_pagamento_id %>
+</p>
+
+<p>
+  <strong>Pedido venda status:</strong>
+  <%= @pedido_venda.pedido_venda_status_id %>
+</p>
+
+<%= link_to 'Edit', edit_pedido_venda_path(@pedido_venda) %> |
+<%= link_to 'Back', pedido_vendas_path %>

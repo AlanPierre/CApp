@@ -1,0 +1,58 @@
+<div class="col-md-3">
+    <div class="col-md-12 margin-bottom">
+<%= link_to 'Adicionar', new_cliente_path, :class => 'btn btn-block btn-success btn-flat' %>
+  </div>
+    
+<div class="col-md-12 margin-bottom">
+<%= form_tag clientes_path, :method => 'get' do %>   
+    <%= text_field_tag :search_with, params[:search_with], :class => 'form-control  input-sm', :placeholder => "Buscar cliente" %> 
+      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+<% end %>  
+  </div>   
+        
+<form class="filter_form", method="get">
+
+  <div class="col-md-12">    
+  <div class="box box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">Status</h3>
+    </div>
+    <div class="box-body no-padding">
+        <ul class="nav nav-pills nav-stacked">
+            <% @status.each do |status| %>
+             <li>
+            <a href=""><%= check_box_tag("status[]", status.id) %>
+                <%= status.name %> </a>
+            </li>
+            <% end %>
+
+      </ul>
+
+    </div><!-- /.box-body -->
+  </div><!-- /. box -->
+</div>
+
+      
+  <div class="col-md-12">    
+  <div class="box box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">Vendedores</h3>
+    </div>
+    <div class="box-body no-padding">
+      <form class="filter_form", method="get">
+        <ul class="nav nav-pills nav-stacked">
+            <% @vendedores.each do |vendedor| %>
+             <li>
+            <a href=""><%= check_box_tag("vendedor[]", vendedor.id) %>
+                <%= vendedor.name %> </a>
+            </li>
+            <% end %>
+      </ul>
+    </div><!-- /.box-body -->
+  </div><!-- /. box -->
+                      <input type="submit" value="Filtrar" class="btn btn-block btn-default btn-flat" />
+
+</div>
+
+    
+</div>

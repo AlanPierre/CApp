@@ -1,0 +1,74 @@
+<%= simple_form_for(@pedido_venda) do |f| %>
+<div class="col-sm-12">
+<div class="box box-success">
+<div class="box-header">
+        <div class="col-md-2 pull-left">
+            <h3 class="no-margin box-title">Código: <%= f.object.id %></h3>
+</div>
+        
+        <div class="col-md-2 col-xs-6 pull-right">
+            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat" %>
+        </div>
+        <%if f.object.id.present? %>
+        <div class="col-md-2 col-xs-6 pull-right">
+            <%=link_to "Gerar OP",{:controller => "default", :action => "gerar_venda", :orcamento_id => @pedido_venda.id }, data: { confirm: 'Deseja gerar um pedido de venda?' }, :class => "btn btn-block btn-default btn-flat"  %>
+        </div>
+    <div class="col-md-2 col-xs-6 pull-right">
+            <%=link_to "Imprimir",{:controller => "default", :action => "gerar_venda", :orcamento_id => @pedido_venda.id }, data: { confirm: 'Deseja gerar um pedido de venda?' }, :class => "btn btn-block btn-default btn-flat"  %>
+        </div>
+     <%end%>
+</div>
+<div class="box-body">
+        <div class="col-sm-6">
+            <%= f.input :cliente_id,:collection =>  Cliente.where(cliente_status_id: 1),:label_method => :nome_fantasia,:value_method => :id,:label => "Cliente" ,:include_blank => true %>
+        </div>
+        <div class="col-sm-3">
+             <%=f.input :data_solicitacao, :as => :string, :label =>"Solicitado em", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
+        </div>
+        <div class="col-sm-3">  
+        <%= f.input :user_id,:collection =>  User.where(departamento_id: 1),:label_method => :name,:value_method => :id,:label => "Vendedor" ,:include_blank => true %>
+        </div>
+        <div class="col-sm-3">
+            <%=f.association :forma_pagamento, collection: FormaPagamento.where(active: true), :label => "Forma de pagamento",:include_blank => false %>
+        </div>
+        <div class="col-sm-3">
+            <%=f.association :pedido_venda_status, collection: PedidoVendaStatus.where(active: true), :label => "Status",:include_blank => false %>
+        </div>
+        <div class="col-sm-2">
+            <%= f.input :recibo, :label =>"Emitir recibo" %>
+        </div>
+        <div class="col-sm-2">
+            <%= f.input :nota_fiscal, :label =>"Emitir nota fiscal"%>
+        </div>
+         <div class="col-sm-12">
+            <%= f.input :detalhes,:as => :text,  :label =>"Detalhes"%>
+        </div>
+</div><!-- /.box-body -->
+</div>
+</div>
+<div class="col-sm-12">
+<div class="box box-success">
+        <div class="box-header">
+          <h3 class="box-title">Produtos</h3>
+        </div>
+        <div class="box-body">
+        <fieldset id="pedido_venda_items">
+            <%= f.simple_fields_for :pedido_venda_items do |builder| %>
+            <%= render "pedido_venda_item_fields", :f => builder %>
+            <% end %>
+                <div class="col-sm-6">
+                    <%= link_to_add_association 'Adicionar Produto', f, :pedido_venda_items, :class => "btn  btn-default btn-flat"   %>
+                </div>
+                <div class="col-sm-2 pull-right">
+                        <span id="total"> </span>
+                </div>  
+        </fieldset>
+        </div><!-- /.box-body -->
+      </div>
+</div>
+
+<div class="col-sm-2">
+        <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat" %>
+</div>
+<% end %>
+  

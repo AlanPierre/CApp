@@ -1,0 +1,42 @@
+<%= render 'sidebar', cache: true%> 
+<div class="col-sm-9">
+<div class="box box-success">
+<div class="box-header with-border">
+<h3 class="box-title">Clientes</h3>
+</div><!-- /.box-header -->
+<div class="box-body">
+<div class="table-responsive mailbox-messages">
+<table  class="table table-bordered table-hover">
+<thead>
+<tr> 
+<th>Nome Fantasia</th>
+<th>Tipo de Faturamento</th>
+<th>Status</th>
+<th>Vendedor</th>
+</tr>
+</thead>
+<tbody>
+<% @clientes.each do |cliente| %>
+<tr>
+<td><%= link_to cliente.nome_fantasia, edit_cliente_path(cliente) %></td>
+<td><%= cliente.cliente_faturamento.name if cliente.cliente_faturamento%></td>  
+<td>
+<%if cliente.cliente_status_id == 2 %>
+<span class="label label-danger"><%= cliente.cliente_status.name if cliente.cliente_status %></span>
+<%else%>
+<span class="label label-success"><%= cliente.cliente_status.name if cliente.cliente_status %></span>
+<%end%>
+</td>
+<td><%= cliente.user.name if cliente.user %></td>
+</tr>
+<% end %>
+</tbody>
+</table><!-- /.table -->
+</div><!-- /.mail-box-messages -->
+</div><!-- /.box-body -->
+<div class="box-footer no-padding">
+<%= will_paginate @clientes %>
+</div>
+</div>
+</div>
+

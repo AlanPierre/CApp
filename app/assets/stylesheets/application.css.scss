@@ -1,0 +1,74 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+* *= require bootstrap
+ *= require font-awesome
+*= require ionicons
+ *= require admin-lte
+ *= require iCheck/square/green
+ *= require datatables/dataTables.bootstrap
+ *= require_self
+ *= require_tree .
+ */
+
+
+.nested-fields{
+  border-bottom: 1px solid #eee;
+  display: inline-block;
+  padding-bottom: 15px;
+  width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+
+.navbar-nav>.messages-menu>.dropdown-menu>li{
+    .menu>li>a>p{margin: 0px !important}
+    .menu>li>a>h4{margin: 0px !important}
+    .menu>li>a, .navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a, .navbar-nav>.tasks-menu>.dropdown-menu>li .menu>li>a{
+      border-bottom: none !important;}
+    
+}
+
+.navbar-nav>.notifications-menu>.dropdown-menu>li .menu>li, .navbar-nav>.messages-menu>.dropdown-menu>li .menu>li, .navbar-nav>.tasks-menu>.dropdown-menu>li .menu>li{
+      border-bottom: 1px solid #f4f4f4 !important;
+}
+
+.navbar-nav>.user-menu>.dropdown-menu{
+width: 193px !important;}
+
+.box-body{
+    display: inline-block;
+    width: 100%;}
+
+
+.form-control-feedback {
+  position: absolute;
+  top: 0;
+  right: 25px;
+    z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  pointer-events: none;
+}
+
+
+textarea {
+  max-width: 100%;
+}

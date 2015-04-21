@@ -1,0 +1,7 @@
+<% if activity.trackable %>
+<%= link_to edit_orcamento_path(activity.trackable) do%>
+<p>atualizou o orcamento cod:<%= activity.trackable.id %> </p>
+<% end %>
+<% else %>
+  which has since been removed 
+<% end %>

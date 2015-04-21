@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @orcamento.user_id %>
+</p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @orcamento.cliente_id %>
+</p>
+
+<p>
+  <strong>Data solicitacao:</strong>
+  <%= @orcamento.data_solicitacao %>
+</p>
+
+<p>
+  <strong>Data aprovacao:</strong>
+  <%= @orcamento.data_aprovacao %>
+</p>
+
+<p>
+  <strong>Referencia:</strong>
+  <%= @orcamento.referencia %>
+</p>
+
+<p>
+  <strong>Condicoes:</strong>
+  <%= @orcamento.condicoes %>
+</p>
+
+<p>
+  <strong>Orcamento status:</strong>
+  <%= @orcamento.orcamento_status_id %>
+</p>
+
+<%= link_to 'Edit', edit_orcamento_path(@orcamento) %> |
+<%= link_to 'Back', orcamentos_path %>

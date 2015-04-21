@@ -1,0 +1,41 @@
+<%= render 'sidebar', cache: true%> 
+
+<div class="col-sm-9">
+<div class="box box-success">
+<div class="box-header">
+  <h3 class="box-title">Orçamentos</h3>
+</div>
+<div class="box-body">
+<table  class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Data de solicitação</th>
+        <th>Vendedor</th>
+        <th>Total</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orcamentos.each do |orcamento| %>
+      <tr>
+        <td><%= link_to orcamento.cliente.nome_fantasia, edit_orcamento_path(orcamento) %></td>
+        <td><%= l(orcamento.data_solicitacao) if orcamento.data_solicitacao %></td>
+        <td><%= orcamento.user.name if orcamento.user %></td>
+          <td><%= number_to_currency(orcamento.calculate_totals) %></td>
+          <td>
+            <%if orcamento.orcamento_status_id == 2 %>
+            <span class="label label-danger"><%= orcamento.orcamento_status.name if orcamento.orcamento_status %></span>
+        <%else%>
+            <span class="label label-success"><%= orcamento.orcamento_status.name if orcamento.orcamento_status %></span>
+        <%end%>
+          </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div><!-- /.box-body -->
+</div>
+</div>

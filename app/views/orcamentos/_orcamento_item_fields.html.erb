@@ -1,0 +1,65 @@
+<div class="nested-fields">
+<div class="col-md-12">    
+<div class="pull-right">
+<%= link_to_remove_association f  do%>
+    <span >×</span>
+<% end %>
+</div>
+</div>
+<div class="col-sm-2">
+        <%= f.input :quantidade, input_html: { class: 'quantidade',  onkeyup: "SomarItens()" } %>
+    </div>
+    <div class="col-sm-3">
+        <%var = "produto_" + (Random.rand(10...42)).to_s %>
+         <%= f.input :produto_id, collection: Produto.where(active: true), input_html: { id: var, onchange: "DynamicSelect()"  }, :include_blank => false %>
+    </div>
+    <div class="col-sm-3">
+        <%= f.input :material_id, collection: Material.where(active: true),input_html: { 
+                     "data-option-dependent" => true,
+                     "data-option-observed" => var,
+                     "data-option-url" => "/produto/:produto_id:/materials.json",
+                     "data-option-key-method" => :id,
+                     "data-option-value-method" => :name } %>
+     </div>        
+    <div class="col-sm-2">
+        <%= f.input :preco, :as => :string, :label => "Preço unitário", input_html: { class: 'valor',   onkeyup: "SomarItens()",  alt: "decimal"} %>
+    </div>
+     <div class="col-sm-2">
+    <%= f.input :subtotal, :disabled => true, input_html: { class: 'subtotal' } %> 
+    </div>
+    <div class="col-sm-12">
+    <label class="text optional control-label">Descrição</label><%= link_to ' (Usar modelo) ', "#", data: {toggle: "modal", target: "#descricao-items"} %>
+    <%= f.text_area :descricao, :class => 'text optional form-control' %> 
+    </div>
+</div>
+
+<div class="modal fade" id="descricao-items">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Descrições de Produtos</h4>
+      </div>
+      <div class="modal-body">
+          <div class="col-sm-6 margin-bottom">     
+              <%= select_tag( :descricao_id, options_from_collection_for_select(OrcamentoItemDescricao.all, "id", "name"), class: "select form-control",
+                  data: {
+                    remote: true,
+                    url: url_for( action: :update_descricao_item, descricao_id: 1),
+                    update: "descricao"
+                  }
+                )%>          
+          </div>
+          <div class="col-sm-12 margin-bottom">
+              <%=text_area :descricao, :class =>'text optional form-control'%>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default  btn-flat pull-left" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-success btn-flat">Inserir</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+  

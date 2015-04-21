@@ -1,0 +1,22 @@
+<div class="nested-fields">
+<div class="col-md-12">    
+<div class="pull-right">
+<%= link_to_remove_association f  do%>
+    <span >×</span>
+<% end %>
+</div>
+</div>
+    <div class="col-sm-3">
+            <%= f.input :nome %>
+        </div>
+        <div class="col-sm-3">
+            <%= f.input :email %>
+        </div>
+        <div class="col-sm-3">
+            <%= f.input :telefone %>
+        </div>
+        <div class="col-sm-3">
+            <%= f.input :observacao, :label => 'Observação' %>
+        </div>
+
+</div>

@@ -1,0 +1,91 @@
+
+<%= simple_form_for(@cliente) do |f| %>
+<%= f.error_notification %>
+
+<div class="box box-success">
+<div class="box-header">
+    
+        <div class="col-md-2 col-xs-6 pull-right">
+            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat" %>
+        </div>
+        <%if f.object.id.present? %>
+
+     <%end%>
+</div>
+<div class="box-body">
+            <div class="col-sm-6">
+                <%= f.input :nome_fantasia %>
+            </div>
+            <div class="col-sm-6">
+                <%= f.input :razao_social, :label =>"Razão social"  %>
+            </div>
+            <div class="col-sm-3"> 
+                <%= f.input :cnpj, :mask => '99-9999-9999', :label =>"CNPJ" %>
+            </div>
+            <div class="col-sm-3"> 
+                <%= f.input :inscricao_municipal, :label =>"Inscrição municipal" %>
+            </div> 
+            <div class=" col-sm-3">   
+                <%= f.input :inscricao_estadual, :label =>"Inscrição estadual" %>
+            </div>
+            <div class="col-sm-3">                  
+                <%=f.association :cliente_faturamento, collection: ClienteFaturamento.where(active: true), :label => "Tipo de Faturamento",:include_blank => false %>
+            </div>
+            <div class="col-sm-3">
+                <%=f.association :cliente_status, collection: ClienteStatus.all, :label => "Status",:include_blank => false %>
+            </div>
+            <div class="col-sm-3">
+                <%=f.association :cliente_ramo, collection: ClienteRamo.all, :label => "Ramo de mercado",:include_blank => false %>
+            </div>
+            <div class="col-sm-3">  
+                <%= f.input :user_id,:collection =>  User.where(departamento_id: 1),:label_method => :name,:value_method => :id,:label => "Vendedor" ,:include_blank => true %>
+            </div>
+            <div class="col-sm-3">  
+                <%= f.input :notificacao, :label =>"Receber notificação" %>
+            </div>
+     <div class="col-md-12">  
+                <%= f.input :observacao, as: :text, :label =>"Observações" %>
+            </div>
+</div>
+</div><!-- /.box-body -->
+ 
+
+                      
+<div class="nav-tabs-custom">
+                  <ul class="nav nav-tabs">
+                      <li class="active"><a href="#contatos" data-toggle="tab" aria-expanded="true">Contatos</a></li>
+                      <li class=""><a href="#enderecos" data-toggle="tab" aria-expanded="false">Endereços</a></li>
+                      <li class=""><a href="#estoques" data-toggle="tab" aria-expanded="false">Estoque</a></li>
+                      <li class=""><a href="#comentarios" data-toggle="tab" aria-expanded="false">Comentários</a></li>
+                 </ul>
+                  <div class="tab-content">
+                      <div class="tab-pane active" id="contatos">
+                          <fieldset id="cliente_contatos">
+                              <%= f.simple_fields_for :cliente_contatos do |builder| %>
+                              <%= render "cliente_contato_fields", :f => builder %>
+                              <% end %>
+                              <div class="col-md-12">  
+                                  <%= link_to_add_association 'Adicionar contato', f, :cliente_contatos %>
+                              </div>
+                          </fieldset>
+                      </div><!-- /.tab-pane -->
+                      <div class="tab-pane" id="enderecos">
+                          <fieldset id="cliente_enderecos">
+                              <%= f.fields_for  :cliente_enderecos do |builder| %>
+                            
+                              <%= render "cliente_endereco_fields", :f => builder, :render_options => { :wrapper => 'inline' }  %>
+                              <% end %>
+                              <div class="col-md-12">  
+                                  <%= link_to_add_association 'Adicionar endereço', f, :cliente_enderecos %>
+                              </div>
+                          </fieldset>
+                      </div><!-- /.tab-pane -->
+                      <div class="tab-pane" id="comentarios">
+                          <div id="cliente_comentarios">
+                          </div>
+                      </div><!-- /.tab-pane -->
+                  </div><!-- /.tab-content -->
+              </div>    
+<% end %>
+  
+

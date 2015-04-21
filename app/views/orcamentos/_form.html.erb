@@ -1,0 +1,73 @@
+    <%= simple_form_for(@orcamento) do |f| %>
+
+<div class="box box-success">
+<div class="box-header">
+        <div class="col-md-2 pull-left">
+            <h3 class="no-margin box-title">Código:<%= f.object.id %></h3>
+</div>
+        
+        <div class="col-md-2 col-xs-6 pull-right">
+            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat" %>
+        </div>
+        <%if f.object.id.present? %>
+        <div class="col-md-2 col-xs-6 pull-right">
+            <%=link_to "Gerar venda",{:controller => "default", :action => "gerar_venda", :orcamento_id => @orcamento.id }, data: { confirm: 'Deseja gerar um pedido de venda?' }, :class => "btn btn-block btn-default btn-flat"  %>
+        </div>
+    <div class="col-md-2 col-xs-6 pull-right">
+            <%=link_to "Imprimir",{:controller => "default", :action => "gerar_venda", :orcamento_id => @orcamento.id }, data: { confirm: 'Deseja gerar um pedido de venda?' }, :class => "btn btn-block btn-default btn-flat"  %>
+        </div>
+     <%end%>
+</div>
+<div class="box-body">
+        <div class="col-sm-6">
+            <%= f.input :cliente_id,:collection =>  Cliente.where(cliente_status_id: 1),:label_method => :nome_fantasia,:value_method => :id,:label => "Cliente" ,:include_blank => true %>
+                        
+        </div>
+        <div class="col-sm-3">
+             <%=f.input :data_solicitacao, :as => :string, :label =>"Solicitado em", input_html: { }%>
+
+        </div>
+    <div class="col-sm-3">
+             <%=f.input :data_aprovacao, :as => :string, :label =>"Aprovado em", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
+        </div>
+        <div class="col-sm-3">  
+        <%= f.input :user_id,:collection =>  User.where(departamento_id: 1),:label_method => :name,:value_method => :id,:label => "Vendedor" ,:include_blank => true %>
+        </div>
+        <div class="col-sm-3">
+            <%=f.association :orcamento_status, collection: OrcamentoStatus.where(active: true), :label => "Status",:include_blank => false %>
+        </div>
+          <div class="col-sm-6">
+            <%= f.input :referencia, :label =>"Referência"%>
+        </div>
+         <div class="col-sm-12">
+            <%= f.input :condicoes,:as => :text,  :label =>"Condições Gerais"%>
+        </div>
+</div><!-- /.box-body -->
+</div>
+
+    
+<div class="col-sm-12">
+<div class="box box-success">
+        <div class="box-header">
+          <h3 class="box-title">Produtos</h3>
+        </div>
+        <div class="box-body">
+        <fieldset id="orcamento_items">
+            <%= f.simple_fields_for :orcamento_items do |builder| %>
+            <%= render "orcamento_item_fields", :f => builder %>
+            <% end %>
+                <div class="col-sm-6">
+                    <%= link_to_add_association 'Adicionar Produto', f, :orcamento_items, :class => "btn  btn-default btn-flat"   %>
+                </div>
+                <div class="col-sm-5">
+                    <div class="col-sm-5 pull-right">
+                    <%= f.input :calculate_totals, :label => "Total", :disabled => true,  input_html: { class: 'total' } %> 
+                    </div>
+                </div>  
+        </fieldset>
+        </div><!-- /.box-body -->
+      </div>
+</div> 
+
+<% end %>
+  

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pedido_venda_id: 1
+  quantidade: 1
+  valor: 9.99
+  desconto: 9.99
+  mix_produto_id: 1
+
+two:
+  pedido_venda_id: 1
+  quantidade: 1
+  valor: 9.99
+  desconto: 9.99
+  mix_produto_id: 1
