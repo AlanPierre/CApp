@@ -52,7 +52,8 @@ group :development, :test do
   gem 'byebug'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-    gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
 end
 
+group :production do
+  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+end
