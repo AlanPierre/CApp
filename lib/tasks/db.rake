@@ -36,7 +36,17 @@ namespace :db do
         OrcamentoStatus.create(name: 'Pedeu', active: true)
         OrcamentoStatus.create(name: 'Refeito', active: true)
         OrcamentoStatus.create(name: 'Prospecção', active: true)
-
+        
+        PedidoLayoutStatus.create(name: 'A Produzir', active: true)
+        PedidoLayoutStatus.create(name: 'Alteração', active: true)
+        PedidoLayoutStatus.create(name: 'Aprovado', active: true)
+        PedidoLayoutStatus.create(name: 'Cancelado', active: true)
+        PedidoLayoutStatus.create(name: 'Criação', active: true)
+        PedidoLayoutStatus.create(name: 'Criação Pend. Cliente', active: true)
+        PedidoLayoutStatus.create(name: 'Em Produção', active: true)
+        PedidoLayoutStatus.create(name: 'Finalizado', active: true)    
+        PedidoLayoutStatus.create(name: 'Finalização', active: true)
+        
         FormaEntrega.create(name: 'Retirada', active: true)
         FormaEntrega.create(name: 'Entrega', active: true)
         FormaEntrega.create(name: 'Transportadora', active: true)

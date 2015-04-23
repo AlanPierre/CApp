@@ -1,0 +1,78 @@
+<%= simple_form_for(@layout) do |f| %>
+
+<div class="box box-success">
+<div class="box-header">
+        <div class="col-md-2 pull-left">
+            <h3 class="no-margin box-title">Código:<%= f.object.id %></h3>
+</div>
+        
+        <div class="col-md-2 col-xs-6 pull-right">
+            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat" %>
+        </div>
+</div>
+<div class="box-body">
+        <div class="col-sm-6">
+            <%= f.input :cliente_id,:collection =>  Cliente.where(cliente_status_id: 1),:label_method => :nome_fantasia,:value_method => :id,:label => "Cliente" ,:include_blank => true %>             
+        </div>
+        <div class="col-sm-6">
+            <%= f.input :name, :label =>"Layout"%>
+        </div>
+    <div class="col-sm-3">
+             <%=f.input :data_aprovacao, :as => :string, :label =>"Aprovado em", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
+        </div>
+
+        <div class="col-sm-3">
+            <%=f.association :pedido_layout_status, collection: PedidoLayoutStatus.where(active: true), :label => "Status",:include_blank => false %>
+        </div>
+        <div class="item">
+            <div class="col-sm-3">
+                 <%= f.input :produto_id, collection: Produto.where(active: true), input_html: { id: "produto_id", onchange: "DynamicSelect()"  }, :include_blank => false %>
+            </div>
+            <div class="col-sm-3">
+                <%= f.input :material_id, collection: Material.where(active: true),input_html: { 
+                             "data-option-dependent" => true,
+                             "data-option-observed" => "produto_id",
+                             "data-option-url" => "/produto/:produto_id:/materials.json",
+                             "data-option-key-method" => :id,
+                             "data-option-value-method" => :name } %>
+             </div>
+        </div>
+        <div class="item">
+            <div class="col-sm-3">
+                 <%= f.input :impressora_id, collection: Impressora.where(active: true), input_html: { id: "impressora_id", onchange: "DynamicSelect()"  }, :include_blank => false %>
+            </div>
+            <div class="col-sm-3">
+                <%= f.input :impressora_config_id, collection: ImpressoraConfig.where(active: true),input_html: { 
+                             "data-option-dependent" => true,
+                             "data-option-observed" => "impressora_id",
+                             "data-option-url" => "/impressora/:impressora_id:/configs.json",
+                             "data-option-key-method" => :id,
+                             "data-option-value-method" => :name } %>
+             </div>
+    
+        </div>
+            <div class="col-sm-3">
+            <%=f.association :codigo_barra, collection: CodigoBarra.where(active: true), :label => "Código de barra",:include_blank => true %>
+        </div>
+        
+        <div class="col-sm-3">
+            <%= f.input :digitos, :label =>"Quantidade de dígitos"%>
+        </div>
+    
+        <div class="col-sm-2">
+            <%= f.input :furo, :label =>"Furo"%>
+        </div>
+        <div class="col-sm-2">
+            <%= f.input :etiqueta, :label =>"Etiqueta"%>
+        </div>
+        <div class="col-sm-2">
+            <%= f.input :porta_cracha, :label =>"Porta crachá"%>
+        </div>
+    
+         <div class="col-sm-12">
+            <%= f.input :observacao,:as => :text,  :label =>"Observações"%>
+        </div>
+</div><!-- /.box-body -->
+</div>
+
+<% end %>

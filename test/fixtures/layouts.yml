@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  cliente_id: 1
+  data_aprovacao: 2015-04-22
+  pedido_layout_status_id: 1
+  impressora_id: 1
+  impressora_config_id: 1
+  produto_id: 1
+  material_id: 1
+  codigo_barra_id: 1
+  digitos: 1
+  furo: false
+  etiqueta: false
+  porta_cracha: false
+  observacao: MyString
+
+two:
+  name: MyString
+  cliente_id: 1
+  data_aprovacao: 2015-04-22
+  pedido_layout_status_id: 1
+  impressora_id: 1
+  impressora_config_id: 1
+  produto_id: 1
+  material_id: 1
+  codigo_barra_id: 1
+  digitos: 1
+  furo: false
+  etiqueta: false
+  porta_cracha: false
+  observacao: MyString

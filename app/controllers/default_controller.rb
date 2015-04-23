@@ -6,6 +6,13 @@ class DefaultController < ApplicationController
             format.json { render :json => produto.materials.where(active: true)}
         end
       end
+    
+    def update_impressora_configs        
+        impressora = Impressora.find(params[:impressora_id])
+              respond_to do |format|
+            format.json { render :json => impressora.impressora_configs.where(active: true)}
+        end
+      end
 
       def update_cidades
         estado = Estado.find(params[:estado_id])
@@ -28,6 +35,14 @@ class DefaultController < ApplicationController
             format.json { render :json => cliente.cliente_enderecos }
         end
       end
+    
+    def update_item_descricao
+        item_descricao = OrcamentoItemDescricao.find(params[:descricao_id])
+        respond_to do |format|
+            format.html {render :json => item_descricao}
+            format.json { render :json => item_descricao}
+        end
+    end
     
     def gerar_venda
         @orcamento = Orcamento.find(params[:orcamento_id])

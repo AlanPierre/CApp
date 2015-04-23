@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   #before_action :authenticate_user!
   include PublicActivity::StoreController 
   include ActionView::Helpers::TextHelper
+  
+   layout '../default/application.html.erb'
+    
+    
 end
 
 

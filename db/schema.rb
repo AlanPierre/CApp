@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421115946) do
+ActiveRecord::Schema.define(version: 20150422221414) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -142,6 +142,13 @@ ActiveRecord::Schema.define(version: 20150421115946) do
     t.integer  "cliente_ramo_id",        limit: 4
   end
 
+  create_table "codigo_barras", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.boolean  "active",     limit: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "departamentos", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
@@ -167,6 +174,40 @@ ActiveRecord::Schema.define(version: 20150421115946) do
     t.boolean  "active",     limit: 1
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "impressora_configs", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.boolean  "active",        limit: 1
+    t.string   "impressora_id", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "impressoras", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.boolean  "active",     limit: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "layouts", force: :cascade do |t|
+    t.string   "name",                    limit: 255
+    t.integer  "cliente_id",              limit: 4
+    t.date     "data_aprovacao"
+    t.integer  "pedido_layout_status_id", limit: 4
+    t.integer  "impressora_id",           limit: 4
+    t.integer  "impressora_config_id",    limit: 4
+    t.integer  "produto_id",              limit: 4
+    t.integer  "material_id",             limit: 4
+    t.integer  "codigo_barra_id",         limit: 4
+    t.integer  "digitos",                 limit: 4
+    t.boolean  "furo",                    limit: 1
+    t.boolean  "etiqueta",                limit: 1
+    t.boolean  "porta_cracha",            limit: 1
+    t.string   "observacao",              limit: 255
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "materials", force: :cascade do |t|
@@ -236,6 +277,13 @@ ActiveRecord::Schema.define(version: 20150421115946) do
     t.integer  "cliente_endereco_id", limit: 4
   end
 
+  create_table "pedido_layout_statuses", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.boolean  "active",     limit: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "pedido_venda_items", force: :cascade do |t|
     t.integer  "pedido_venda_id", limit: 4
     t.integer  "quantidade",      limit: 4
@@ -269,6 +317,13 @@ ActiveRecord::Schema.define(version: 20150421115946) do
   end
 
   create_table "produtos", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.boolean  "active",     limit: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "ribbons", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.boolean  "active",     limit: 1
     t.datetime "created_at",             null: false

@@ -1,4 +1,4 @@
-<div class="nested-fields">
+<div class="nested-fields item">
 <div class="col-md-12">    
 <div class="pull-right">
 <%= link_to_remove_association f  do%>
@@ -28,12 +28,12 @@
     <%= f.input :subtotal, :disabled => true, input_html: { class: 'subtotal' } %> 
     </div>
     <div class="col-sm-12">
-    <label class="text optional control-label">Descrição</label><%= link_to ' (Usar modelo) ', "#", data: {toggle: "modal", target: "#descricao-items"} %>
-    <%= f.text_area :descricao, :class => 'text optional form-control' %> 
+    <label class="text optional control-label">Descrição</label><%= link_to ' (Usar modelo) ', "#", :onclick => "OpenModal();return false;" %>
+    <%= f.text_area :descricao, :class => 'text optional form-control descricao_item' %> 
     </div>
-</div>
+    
 
-<div class="modal fade" id="descricao-items">
+    <div class="modal fade descricao-items">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -43,23 +43,25 @@
       </div>
       <div class="modal-body">
           <div class="col-sm-6 margin-bottom">     
-              <%= select_tag( :descricao_id, options_from_collection_for_select(OrcamentoItemDescricao.all, "id", "name"), class: "select form-control",
-                  data: {
-                    remote: true,
-                    url: url_for( action: :update_descricao_item, descricao_id: 1),
-                    update: "descricao"
-                  }
-                )%>          
+              <%= select_tag( :descricao_id, options_from_collection_for_select(OrcamentoItemDescricao.all, "id", "name"), class: "select form-control", :include_blank => true, onchange: "DynamicSelectDescricao()")%>          
           </div>
           <div class="col-sm-12 margin-bottom">
-              <%=text_area :descricao, :class =>'text optional form-control'%>
+                <%=text_area(:descricao, :text, cols: 1, rows: 3, class: 'text optional form-control descricao_text',                         
+                    "data-option-dependent" => true,
+                     "data-option-observed" => "descricao_id",
+                     "data-option-url" => "/orcamento-item-descricao/:descricao_id:.json",
+                     "data-option-key-method" => :id,
+                     "data-option-value-method" => :descricao)%>
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default  btn-flat pull-left" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-success btn-flat">Inserir</button>
+        <button type="button" class="btn btn-default  btn-flat pull-left" onclick="CloseModal()">Cancelar</button>
+        <button type="button" class="btn btn-success btn-flat" onclick="InserirDescricao()">Inserir</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
   
+</div>
+
+

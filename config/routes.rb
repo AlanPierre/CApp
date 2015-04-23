@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :layouts
   resources :orcamentos
   resources :pedido_vendas
   resources :clientes
@@ -24,9 +25,10 @@ Rails.application.routes.draw do
     get "estado/:estado_id/cidades" => "default#update_cidades"
     get "produto/:produto_id/materials" => "default#update_produtos"
     get "cliente/:cliente_id/enderecos" => "default#busca_endereco"
+    get "impressora/:impressora_id/configs" => "default#update_impressora_configs"
     get "gera-venda/:orcamento_id" => "default#gerar_venda"
     get "/feed" => "activities#index", as: :feed
-    get "orcamento-item-descricao/:descricao_id" => "orcamentos#update_descricao_item"
+    get "orcamento-item-descricao/:descricao_id" => "default#update_item_descricao"
     
 
     

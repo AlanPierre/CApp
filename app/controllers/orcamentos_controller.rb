@@ -15,14 +15,6 @@ class OrcamentosController < InheritedResources::Base
         update! { edit_orcamento_path}  
     end
     
-    def update_descricao_item  
-        descricao_item = OrcamentoDescricaoItem.find(params[:descricao_id])
-        respond_to do |format|
-            format.html {render :json => descricao_item}
-            format.json { render :json => descricao_item }
-        end
-    end
-
   private
 
     def orcamento_params

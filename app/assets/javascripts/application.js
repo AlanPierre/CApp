@@ -48,7 +48,7 @@ function SomarItens() {
 
 
 function DynamicSelect()  {
-    var $parent = $(":focus").parents(".nested-fields"); 
+    var $parent = $(":focus").parents(".item"); 
     $parent.find('select[data-option-dependent=true]').each(function(i) {
       var key_method, observed, observed_dom_id, observer, observer_dom_id, prompt, regexp, url_mask, value_method;
       observer_dom_id = $(this).attr("id");
@@ -82,8 +82,49 @@ function DynamicSelect()  {
         }
     });
   }
-
-
  
 
+function DynamicSelectDescricao()  {
+    var $parent = $(":focus").parents(".modal-body"); 
+    $parent.find('textarea[data-option-dependent=true]').each(function(i) {
+      var key_method, observed, observed_dom_id, observer, observer_dom_id, prompt, regexp, url_mask, value_method;
+      observer_dom_id = $(this).attr("id");
+      observed_dom_id = $(this).data("option-observed");
+      url_mask = $(this).data("option-url");
+      key_method = $(this).data("option-key-method");
+      value_method = $(this).data("option-value-method");
+      regexp = /:[0-9a-zA-Z_]+:/g; 
+      observer = $("textarea#" + observer_dom_id);
+      observed = $("#" + observed_dom_id);
+        var url;
+        observer.empty().append(prompt);
+        if (observed.val()) {
+          url = url_mask.replace(regexp, observed.val());
+          $.getJSON(url, function(data) {
+                observer.val(data.descricao);
+  
+          });
+        }
+    });
+  }
+
+function InserirDescricao() {
+    var $parent = $(":focus").parents(".nested-fields");
+    $parent.find('.descricao_item').val($parent.find('.descricao_text').val());
+    $('.descricao-items').modal('hide');
+}
+
+function CloseModal() {
+    $('.descricao-items').modal('hide');
+}
+
+
+function OpenModal() {
+    var $parent = $(":focus").parents(".nested-fields");
+    $parent.find('.descricao_text').val($parent.find('.descricao_item').val());
+    $parent.find('.descricao-items').modal('show');
+}
+ 
+ 
+ 
     
