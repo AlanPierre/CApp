@@ -1,18 +1,19 @@
 <ul class="timeline">
 
     <% @activities.each do |activity| %>  
-    
-    <li>
-        <!-- timeline icon -->
-        <i class="fa fa-envelope bg-blue"></i>
+    <li>    
+        <%if activity.trackable_type == 'Cliente'%>
+            <i class="fa fa-fw fa-user bg-green"></i>
+        <%elsif  activity.trackable_type == 'PedidoVenda'%>
+            <i class="fa fa-fw fa-shopping-cart bg-green"></i>
+        <%elsif  activity.trackable_type == 'Orcamento'%>
+            <i class="fa fa-fw fa-tag bg-green"></i>
+        <%end%>
         <div class="timeline-item">
             <span class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words (activity.created_at)%></span>
-
             <h3 class="timeline-header"><a href="#"><%= activity.owner.name if activity.owner %> </a></h3>
-
             <div class="timeline-body">
                        <%= render_activity activity %>
-            
             </div>
 
         </div>

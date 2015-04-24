@@ -1,0 +1,77 @@
+    <!-- info row -->
+    <div class="row invoice-info">
+      <div class="col-sm-4 invoice-col">
+        Empresa
+        <address>
+          <strong><%=@pedido_venda.cliente.nome_fantasia%></strong><br>
+          Email: john.doe@example.com
+        </address>
+      </div><!-- /.col -->
+      <div class="col-sm-4 invoice-col">
+        <b>Cód. Pedido de Venda:</b> <%=@pedido_venda.id%><br/>
+        <b>Data de Solicitação:</b> <%= l(@pedido_venda.data_solicitacao) if @pedido_venda.data_solicitacao %><br/>
+        <b>Forma de Pagamento:</b> <%=@pedido_venda.forma_pagamento.name%><br/>
+      </div><!-- /.col -->
+      <div class="col-sm-4 invoice-col">
+        <b>Vendedor:</b> <%=@pedido_venda.user.name%><br/>
+        <b>Status:</b> <%=@pedido_venda.pedido_venda_status.name%><br/>
+          <%if @pedido_venda.recibo == true%>
+          Emitir recibo<br/>
+          <%end%>
+          
+          <%if @pedido_venda.nota_fiscal == true%>
+          Emitir nota fiscal
+          <%end%>
+          
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+
+    <!-- Table row -->
+    <div class="row">
+      <div class="col-xs-12 table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Quantidade</th>
+              <th>Produto</th>
+              <th>Material</th>
+              <th>Valor Unit.</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+         <% @pedido_venda_items.each do |item| %>
+            <tr>
+              <td><%= item.quantidade%></td>
+              <td><%= item.produto.name%></td>
+              <td><%= item.material.name%></td>
+            <td><%= number_to_currency(item.valor) %></td>
+              <td><%= number_to_currency(item.subtotal) %></td>
+            </tr>
+            <%end%>
+          </tbody>
+        </table>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+
+    <div class="row">
+      <!-- accepted payments column -->
+      <div class="col-xs-6">
+        <p class="lead">Detalhes:</p>
+        <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+            <%=@pedido_venda.detalhes%> 
+        </p>
+      </div><!-- /.col -->
+        <div class="col-xs-6 pull-right">
+        <div class="table-responsive">
+          <table class="table">
+            <tr>
+              <th style="width:50%">Total:</th>
+              <td><%= number_to_currency(@pedido_venda.calculate_totals) %></td>
+            </tr>
+        </table>
+        </div>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+
+

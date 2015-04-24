@@ -18,7 +18,7 @@
             <%= f.input :name, :label =>"Layout"%>
         </div>
     <div class="col-sm-3">
-             <%=f.input :data_aprovacao, :as => :string, :label =>"Aprovado em", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
+             <%=f.input :data_aprovacao, :as => :date_time, :label =>"Aprovado em", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
         </div>
 
         <div class="col-sm-3">

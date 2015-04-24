@@ -7,8 +7,12 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController 
   include ActionView::Helpers::TextHelper
   
-   layout '../default/application.html.erb'
+   layout '../default/application'
     
+rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
+
     
 end
 

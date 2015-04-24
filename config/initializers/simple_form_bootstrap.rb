@@ -1,5 +1,9 @@
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
+    Date::DATE_FORMATS[:default]="%d/%m/%Y"
+    Time::DATE_FORMATS[:default]="%d/%m/%Y %H:%M"
+    
+    
   config.error_notification_class = 'alert alert-danger'
   config.button_class = 'btn btn-default'
   config.boolean_label_class = nil

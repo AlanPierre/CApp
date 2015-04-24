@@ -18,6 +18,19 @@
 //= require admin-lte
 //= require 'icheck'
 
+$(document).ready(function($) {
+    $("input[type=text].currency").setMask('decimal');
+    $("input[type=text].date_time").setMask('date');
+    $("input[type=text].cnpj").setMask('cnpj');
+});
+
+
+
+function SubmitAndRemoveMask() {
+    $("input[type=text].currency").setMask('decimal_default');
+        $("input[type=text].cnpj").setMask('default');
+}
+
 
 function BuscarCep() {
     var $parent = $(":focus").parents(".nested-fields");
@@ -36,12 +49,28 @@ function BuscarCep() {
 
 
 function SomarItens() {
-    var $parent = $(":focus").parents(".nested-fields");
-    var $valor = $parent.find('.valor');
-    var $quantidade = $parent.find('.quantidade');    
-    var $subtotal = $parent.find('.subtotal');
-    console.log( $valor.val().replace(",", ".") * $quantidade.val());
-    $subtotal.val($valor.val().replace(",", ".") * $quantidade.val().replace(".", ""));
+    var parent, valor, quantidade, subtotal, valorString, items, itemCount, total, itemString
+    $("input[type=text].integer").setMask('integer');
+    parent = $(":focus").parents(".nested-fields");
+    valor = parent.find('.valor');
+    quantidade = parent.find('.quantidade');    
+    subtotal = parent.find('.subtotal');
+    
+    valorString = valor.val().replace(".", "");
+    valorString = valorString.replace(",", ".");
+    subtotal.val(valorString * quantidade.val().replace(".", ""));
+    
+    items = $(".subtotal");
+    itemCount = items.length;
+    total = 0;
+    for(var i = 0; i < itemCount; i++)
+    {
+        itemString = items[i].value;
+        total = total + parseFloat(itemString);
+    }
+    document.getElementById('total').value = total;
+    $("input[type=text].currency").setMask('decimal');
+
 }
 
 
@@ -108,21 +137,30 @@ function DynamicSelectDescricao()  {
     });
   }
 
+function InserirOrcamentoCondicoesGerais() {
+    $.getJSON("/orcamento-item-descricao/1",
+    function ( data ) {
+      console.log(data);
+      $("#orcamento_condicoes").val(data.descricao);
+    }
+  );
+}
+
 function InserirDescricao() {
     var $parent = $(":focus").parents(".nested-fields");
     $parent.find('.descricao_item').val($parent.find('.descricao_text').val());
-    $('.descricao-items').modal('hide');
+    $('.modal').modal('hide');
 }
+
 
 function CloseModal() {
-    $('.descricao-items').modal('hide');
+    $('.modal').modal('hide');
 }
-
 
 function OpenModal() {
     var $parent = $(":focus").parents(".nested-fields");
     $parent.find('.descricao_text').val($parent.find('.descricao_item').val());
-    $parent.find('.descricao-items').modal('show');
+    $parent.find('.modal').modal('show');
 }
  
  

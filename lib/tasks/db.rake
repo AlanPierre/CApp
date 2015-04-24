@@ -29,6 +29,8 @@ namespace :db do
         PedidoVendaStatus.create(name: 'Cancelado', active: true)
         PedidoVendaStatus.create(name: 'Renovação de Contrato', active: true)
           
+        OrcamentoItemDescricao.create(name: '[Padrão] Condições Gerais')
+          
         OrcamentoStatus.create(name: 'Fechado', active: true)
         OrcamentoStatus.create(name: 'Cancelado', active: true)
         OrcamentoStatus.create(name: 'Cotação', active: true)

@@ -1,4 +1,7 @@
 class DefaultController < ApplicationController
+      def index 
+        render :index
+      end
     
       def update_produtos        
         produto = Produto.find(params[:produto_id])

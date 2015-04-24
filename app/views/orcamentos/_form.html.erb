@@ -20,15 +20,14 @@
 </div>
 <div class="box-body">
         <div class="col-sm-6">
-            <%= f.input :cliente_id,:collection =>  Cliente.where(cliente_status_id: 1),:label_method => :nome_fantasia,:value_method => :id,:label => "Cliente" ,:include_blank => true %>
-                        
+            <%= f.input :cliente_id,:collection =>  Cliente.where(cliente_status_id: 1),:label_method => :nome_fantasia,:value_method => :id,:label => "Cliente" ,:include_blank => true %>           
         </div>
         <div class="col-sm-3">
-             <%=f.input :data_solicitacao, :as => :string, :label =>"Solicitado em", input_html: { }%>
+             <%=f.input :data_solicitacao, :as => :date_time, :label =>"Solicitado em", input_html: { }%>
 
         </div>
     <div class="col-sm-3">
-             <%=f.input :data_aprovacao, :as => :string, :label =>"Aprovado em", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
+             <%=f.input :data_aprovacao, :as => :date_time, :label =>"Aprovado em" %>
         </div>
         <div class="col-sm-3">  
         <%= f.input :user_id,:collection =>  User.where(departamento_id: 1),:label_method => :name,:value_method => :id,:label => "Vendedor" ,:include_blank => true %>
@@ -40,7 +39,9 @@
             <%= f.input :referencia, :label =>"Referência"%>
         </div>
          <div class="col-sm-12">
-            <%= f.input :condicoes,:as => :text,  :label =>"Condições Gerais"%>
+         <label class="text optional control-label">Condições Gerais</label><%= link_to ' (Inserir padrão) ', "#", :onclick => "InserirOrcamentoCondicoesGerais();return false;" %>
+             
+            <%= f.input :condicoes,:as => :text,  :label => false%>
         </div>
 </div><!-- /.box-body -->
 </div>
@@ -61,7 +62,7 @@
                 </div>
                 <div class="col-sm-5">
                     <div class="col-sm-5 pull-right">
-                    <%= f.input :calculate_totals, :label => "Total", :disabled => true,  input_html: { class: 'total' } %> 
+                    <%= f.input :calculate_totals, as: :currency, :label => "Total", :disabled => true,  input_html: { class: 'total', id: 'total' } %> 
                     </div>
                 </div>  
         </fieldset>

@@ -6,14 +6,14 @@
 </div>
         
         <div class="col-md-2 col-xs-6 pull-right">
-            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat" %>
+            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat", :onclick => 'SubmitAndRemoveMask()' %>
         </div>
         <%if f.object.id.present? %>
         <div class="col-md-2 col-xs-6 pull-right">
             <%=link_to "Gerar OP",{:controller => "default", :action => "gerar_venda", :orcamento_id => @pedido_venda.id }, data: { confirm: 'Deseja gerar um pedido de venda?' }, :class => "btn btn-block btn-default btn-flat"  %>
         </div>
     <div class="col-md-2 col-xs-6 pull-right">
-            <%=link_to "Imprimir",{:controller => "default", :action => "gerar_venda", :orcamento_id => @pedido_venda.id }, data: { confirm: 'Deseja gerar um pedido de venda?' }, :class => "btn btn-block btn-default btn-flat"  %>
+            <%=link_to "Imprimir", [@pedido_venda, :print],  :class => "btn btn-block btn-default btn-flat", :target => '_blank'%>
         </div>
      <%end%>
 </div>
@@ -22,7 +22,7 @@
             <%= f.input :cliente_id,:collection =>  Cliente.where(cliente_status_id: 1),:label_method => :nome_fantasia,:value_method => :id,:label => "Cliente" ,:include_blank => true %>
         </div>
         <div class="col-sm-3">
-             <%=f.input :data_solicitacao, :as => :string, :label =>"Solicitado em", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
+             <%=f.input :data_solicitacao,  :as => :date_time, :label =>"Solicitado em", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
         </div>
         <div class="col-sm-3">  
         <%= f.input :user_id,:collection =>  User.where(departamento_id: 1),:label_method => :name,:value_method => :id,:label => "Vendedor" ,:include_blank => true %>

@@ -152,6 +152,10 @@
             // and then if the 'attr' options value is 'alt', your input should look like:
             // <input type="text" name="some_name" id="some_name" alt="msk" />
             masks: {
+                'default': {
+                    mask: '999999999999999999'
+                },
+                
                 'phone': {
                     mask: '(99) 9999-9999'
                 },
@@ -173,6 +177,7 @@
                 'cep': {
                     mask: '99999-999'
                 },
+                
                 'time': {
                     mask: '29:59'
                 },
@@ -188,6 +193,13 @@
                     type: 'reverse',
                     defaultValue: '000'
                 },
+                
+                'decimal_default': {
+                    mask: '999999999.99',
+                    type: 'reverse',
+                    defaultValue: '000'
+                },
+                
                 'decimal-us': {
                     mask: '99.999,999,999,999',
                     type: 'reverse',

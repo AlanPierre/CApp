@@ -5,12 +5,17 @@
 <div class="box box-success">
 <div class="box-header">
     
+    
+    <% if can? :update, @cliente %>
         <div class="col-md-2 col-xs-6 pull-right">
-            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat" %>
+            <%=link_to "Imprimir", [@cliente, :print],  :class => "btn btn-block btn-default btn-flat", :target => '_blank'%>
         </div>
-        <%if f.object.id.present? %>
+        <div class="col-md-2 col-xs-6 pull-right">
+            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat", :onclick => 'SubmitAndRemoveMask()' %>
+        </div>
+    <% end %>
 
-     <%end%>
+
 </div>
 <div class="box-body">
             <div class="col-sm-6">
@@ -20,7 +25,7 @@
                 <%= f.input :razao_social, :label =>"Razão social"  %>
             </div>
             <div class="col-sm-3"> 
-                <%= f.input :cnpj, :mask => '99-9999-9999', :label =>"CNPJ" %>
+                <%= f.input :cnpj, as: :cnpj%>
             </div>
             <div class="col-sm-3"> 
                 <%= f.input :inscricao_municipal, :label =>"Inscrição municipal" %>

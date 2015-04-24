@@ -1,5 +1,6 @@
 ActiveAdmin.register OrcamentoItemDescricao do
-actions :all
+ actions :all, :except => :destroy
+
 
 menu parent: "Orçamentos", label:"Descrições padrões"
 

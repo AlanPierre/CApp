@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "CApp" %></title>
+      <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  </head>
+<body onload="">
+    <div class="wrapper">
+        
+    <section class="invoice">
+    <!-- title row -->
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="page-header">
+          <i class="fa fa-globe"></i> Cardcom
+          <small class="pull-right">Data: <%= Time.now.strftime("%d/%m/%Y") %></small>
+        </h2>
+      </div><!-- /.col -->
+    </div>
+         <%= yield %>
+        </section><!-- /.content -->
+
+    </div><!-- ./wrapper -->
+  </body>    
+    
+</html>

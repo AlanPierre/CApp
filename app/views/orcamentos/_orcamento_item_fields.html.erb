@@ -22,10 +22,10 @@
                      "data-option-value-method" => :name } %>
      </div>        
     <div class="col-sm-2">
-        <%= f.input :preco, :as => :string, :label => "Preço unitário", input_html: { class: 'valor',   onkeyup: "SomarItens()",  alt: "decimal"} %>
+        <%= f.input :preco, :as => :currency, :label => "Preço unitário", input_html: { class: 'valor',   onkeyup: "SomarItens()",  alt: "decimal"} %>
     </div>
      <div class="col-sm-2">
-    <%= f.input :subtotal, :disabled => true, input_html: { class: 'subtotal' } %> 
+    <%= f.input :subtotal, :as => :currency, :disabled => true, input_html: { class: 'subtotal' } %> 
     </div>
     <div class="col-sm-12">
     <label class="text optional control-label">Descrição</label><%= link_to ' (Usar modelo) ', "#", :onclick => "OpenModal();return false;" %>
@@ -43,7 +43,7 @@
       </div>
       <div class="modal-body">
           <div class="col-sm-6 margin-bottom">     
-              <%= select_tag( :descricao_id, options_from_collection_for_select(OrcamentoItemDescricao.all, "id", "name"), class: "select form-control", :include_blank => true, onchange: "DynamicSelectDescricao()")%>          
+              <%= select_tag( :descricao_id, options_from_collection_for_select(OrcamentoItemDescricao.where('id > 1'), "id", "name"), class: "select form-control", :include_blank => true, onchange: "DynamicSelectDescricao()")%>          
           </div>
           <div class="col-sm-12 margin-bottom">
                 <%=text_area(:descricao, :text, cols: 1, rows: 3, class: 'text optional form-control descricao_text',                         
