@@ -1,9 +1,17 @@
 class Orcamento < ActiveRecord::Base
-    attr_accessible :user_id, :cliente_id, :id, :data_solicitacao, :data_aprovacao, :referencia, :condicoes, :orcamento_status_id,  :orcamento_items_attributes, :orcamento_contatos_attributes
+    attr_accessible :user_id, :cliente_id, :cliente_endereco_id, :id, :data_solicitacao, :data_aprovacao, :referencia, :condicoes, :orcamento_status_id,  :orcamento_items_attributes, :orcamento_contatos_attributes
     
     include Filterable
-    scope :status, -> (status) { where orcamento_status_id: status }
-    scope :vendedor, -> (vendedor) { where user_id: vendedor }
+    scope :status, -> (status) {
+        statuses = status.split(',')
+        where orcamento_status_id: statuses }
+    
+    scope :vendedor, -> (vendedor) {
+        vendedores = vendedor.split(',')
+        where user_id: vendedores }
+
+    
+    scope :search_with, -> (search) {where('id like?', "%#{search}%") }
 
 
     belongs_to :user

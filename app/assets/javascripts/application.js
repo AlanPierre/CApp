@@ -16,49 +16,86 @@
 //= require_tree .
 //= require bootstrap.min
 //= require admin-lte
-//= require 'icheck'
 
 $(document).ready(function($) {
     $("input[type=text].currency").setMask('decimal');
     $("input[type=text].date_time").setMask('date');
     $("input[type=text].cnpj").setMask('cnpj');
+    $("input[type=text].cep").setMask('cep');
+    
+    $('input').iCheck({
+    checkboxClass: 'icheckbox_flat-yellow',
+    radioClass: 'iradio_flat-yellow'
+  });
+    
+    $("tr[data-link]").click(function() {
+      window.location = $(this).attr("data-link")
+    });
+
+    
 });
 
 
 
 function SubmitAndRemoveMask() {
     $("input[type=text].currency").setMask('decimal_default');
-        $("input[type=text].cnpj").setMask('default');
+    $("input[type=text].cnpj").setMask('default');
+    $("input[type=text].cep").setMask('default');
 }
 
+function SubmitFilter() {
+    var $parent = $(":focus").parents("li");
+    var $check_box = $parent.find("input[type=checkbox]");
+    $check_box.iCheck('update');
+    if ($check_box.is(':checked')) {$check_box.iCheck('uncheck');} else {$check_box.iCheck('check');}
+    $check_box.iCheck('update');
+    $("#filter_form").submit();
+}
 
 function BuscarCep() {
-    var $parent = $(":focus").parents(".nested-fields");
-    var $cep = $parent.find('.cep').val();
-    $.getJSON("/cep/busca_cep/" + $cep,
-    function ( data ) {
-      console.log(data);
-      $parent.find(".logradouro").val(data.tipo_logradouro + ' ' + data.logradouro);
-      $parent.find(".bairro").val(data.bairro);
-      $parent.find(".cidade").val(data.cidade);
-      $parent.find(".estado").select(data.uf);
-    }
-  );
+        var $parent = $(":focus").parents(".nested-fields");
+         $("input[type=text].cep").setMask('cep');   
+      var cep_code =  $parent.find('.cep').val();  
+    if(cep_code.length == 9){  
+      if( cep_code.length <= 0 ) return;
+      $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", { code: cep_code },
+         function(result){
+            if( result.status!=1 ){
+               alert(result.message || "Houve um erro desconhecido");
+               return;
+            }
+            console.log(result);
+            $parent.find(".bairro").val( result.district );
+            $parent.find(".logradouro").val( result.address );
+            var uf = result.state;
+            $parent.find(".estado option").each(function() {
+                this.selected = (this.text === uf);
+            });
+          $parent.find(".estado").trigger("onchange");
+          setTimeout(function() { 
+            var cidade = result.city;
+            $parent.find(".cidade option").each(function() {
+                this.selected = (this.text === cidade);
+            });}, 300);
+          
+      });
+   }
 }
 
 
 
 function SomarItens() {
     var parent, valor, quantidade, subtotal, valorString, items, itemCount, total, itemString
-    $("input[type=text].integer").setMask('integer');
     parent = $(":focus").parents(".nested-fields");
-    valor = parent.find('.valor');
-    quantidade = parent.find('.quantidade');    
+    valor = parent.find('.valor').val();
     subtotal = parent.find('.subtotal');
     
-    valorString = valor.val().replace(".", "");
-    valorString = valorString.replace(",", ".");
-    subtotal.val(valorString * quantidade.val().replace(".", ""));
+    valorString = valor.replace(".", "");
+    valorString = valorString.replace(",", "");
+    
+    quantidade = parent.find('.quantidade').val();
+    
+    subtotal.val(parseInt(+valorString, 10) * parseInt(+quantidade, 10));
     
     items = $(".subtotal");
     itemCount = items.length;
@@ -66,7 +103,10 @@ function SomarItens() {
     for(var i = 0; i < itemCount; i++)
     {
         itemString = items[i].value;
-        total = total + parseFloat(itemString);
+        itemString = itemString.replace(".", "");
+        itemString = itemString.replace(",", "");
+        
+        total = total + parseInt(+itemString, 10);
     }
     document.getElementById('total').value = total;
     $("input[type=text].currency").setMask('decimal');
@@ -111,6 +151,9 @@ function DynamicSelect()  {
         }
     });
   }
+
+
+
  
 
 function DynamicSelectDescricao()  {
@@ -162,7 +205,80 @@ function OpenModal() {
     $parent.find('.descricao_text').val($parent.find('.descricao_item').val());
     $parent.find('.modal').modal('show');
 }
+
+function OpenModalEstoqueMinimo() {
+    var $parent = $(":focus").parents(".nested-fields");
+    $parent.find('.modal').modal('show');
+}
  
- 
- 
+
+
+$(function () {  
+// Search form.  
+  $('#filter_form').submit(function () {  
+    $.get(this.action, $(this).serialize(), null, 'script');  
+    return false;  
+  });   
     
+  // Search form.  
+  $('#search').submit(function () {  
+    $.get(this.action, $(this).serialize(), null, 'script');  
+    return false;  
+  });  
+}); 
+
+
+
+function DynamicSelectOPMaterial()  {
+
+var $parent = $(":focus").parents(".item"); 
+$parent.find('.materials').each(function(i) {
+  var key_method, tipo, tipo_dom_id,cliente, cliente_dom_id, produto, produto_dom_id, observer, observer_dom_id, prompt, regexp, regexp2, regexp3, url_mask, value_method;
+  observer_dom_id = $(this).attr("id");
+    
+cliente_dom_id = $(this).data("option-cliente");
+tipo_dom_id = $(this).data("option-tipo");
+produto_dom_id = $(this).data("option-produto");
+    
+  url_mask = $(this).data("option-url");
+  key_method = $(this).data("option-key-method");
+  value_method = $(this).data("option-value-method");
+  prompt = $("<option value=\"\">").text("Selecione");
+
+regexp = 'cliente';
+regexp2 = 'tipo';
+regexp3 = 'produto';
+    
+
+  observer = $("select#" + observer_dom_id);
+tipo = $("#" + tipo_dom_id);
+cliente = $("#" + cliente_dom_id);
+produto = $("#" + produto_dom_id);
+    
+  if (!observer.val() && tipo.size() > 1 && cliente.size() > 1  && produto.size() > 1) {
+    observer.attr("disabled", true);
+  }
+
+  observer.empty().append(prompt);
+  if (!observer.val() && tipo.size() > 1  && cliente.size() > 1  && produto.size() > 1) {
+    observer.attr('disabled', true);
+  }
+    
+    var url;
+    observer.empty().append(prompt);
+    
+    if (tipo.val() && cliente.val()) {
+    url = url_mask.replace(regexp, cliente.val());
+    url = url.replace(regexp2, tipo.val());
+    url = url.replace(regexp3, produto.val());
+        
+      $.getJSON(url, function(data) {
+        $.each(data, function(i, object) {
+          console.log(data);
+          observer.append($('<option>').attr('value', object[key_method]).text(object[value_method]));
+          observer.attr('disabled', false);
+        });
+      });
+    }
+});
+}

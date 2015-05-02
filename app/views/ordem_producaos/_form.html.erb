@@ -1,0 +1,88 @@
+<%= simple_form_for(@ordem_producao) do |f| %>
+  <%= render "shared/messages", object: f.object %>
+ <div class="box box-success">
+    <div class="box-header">
+        <div class="col-md-2 pull-left">
+            <h3 class="no-margin box-title">Código:<%= f.object.id%> </h3>
+        </div>
+        <div class="col-md-2 col-xs-6 pull-right">
+            <%=  f.submit "Salvar", class:"btn btn-block btn-success btn-flat", :onclick => 'SubmitAndRemoveMask()' %>
+        </div>
+    </div>
+    <div class="box-body">    
+        
+    <div class="col-sm-6">
+            <%= f.input :cliente_id,:collection =>  Cliente.where(cliente_status_id: 1),:label_method => :nome_fantasia,:value_method => :id,:label => "Cliente" ,:include_blank => true, input_html: {:id => 'cliente'} %>
+        </div>
+        <div class="col-sm-3">
+             <%=f.input :data_solicitacao,  :as => :date_time, :label =>"Solicitado em", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
+        </div>
+        <div class="col-sm-3">  
+        <%= f.input :user_id,:collection =>  User.where(departamento_id: 1),:label_method => :name,:value_method => :id,:label => "Vendedor" ,:include_blank => true %>
+        </div>
+        
+        <div class="col-sm-3">
+             
+            <%=f.input :tipo, collection: OrdemProducao::Tipos, :label => "Tipo",:include_blank => false, input_html: {:id => 'tipo' } %>
+        </div>
+        
+        <div class="col-sm-3">
+            <%=f.association :ordem_producao_status, collection: OrdemProducaoStatus.where(active: true), :label => "Status",:include_blank => false %>
+        </div>
+        
+        <div class="col-sm-2">
+            <%= f.input :abrir_pasta, :label =>"Abrir pasta"%>
+        </div>
+        
+        <div class="col-sm-12">
+            <%= f.input :dados_variaveis,  :label =>"Dados variáveis"%>
+        </div>
+         <div class="col-sm-12">
+            <%= f.input :detalhes,:as => :text,  :label =>"Detalhes"%>
+        </div>
+        <div class="col-sm-12">
+            <%= f.input :detalhes_entrega,:as => :text,  :label =>"Observações para entrega"%>
+        </div>
+        
+        <div class="col-sm-2">
+            <%= f.input :recibo, :label =>"Emitir recibo" %>
+        </div>
+        <div class="col-sm-2">
+            <%= f.input :nota_fiscal, :label =>"Emitir nota fiscal"%>
+        </div>
+        <div class="row col-sm-12">
+        <div class="col-sm-3">
+             <%=f.input :data_entrega_previsao,  :as => :date_time, :label =>"Previsão de entrega", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
+        </div>
+        
+        <div class="col-sm-3">
+             <%=f.input :data_pdf,  :as => :date_time, :label =>"PDF enviado em", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
+        </div> 
+        
+        <div class="col-sm-3">
+             <%=f.input :data_finalizacao,  :as => :date_time, :label =>"Finalizado em", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
+        </div>
+        
+        <div class="col-sm-3">
+             <%=f.input :data_entrega,  :as => :date_time, :label =>"Entregue em", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
+        </div>   
+        </div>
+    </div>
+</div>
+
+<div class="box box-success">
+        <div class="box-header">
+          <h3 class="box-title">Produtos</h3>
+        </div>
+        <div class="box-body">
+        <fieldset id="ordem_producao_items">
+            <%= f.simple_fields_for :ordem_producao_items do |builder| %>
+            <%= render "ordem_producao_item_fields", :f => builder %>        
+            <% end %>
+            <div class="col-sm-6">
+                <%= link_to_add_association 'Adicionar Produto', f, :ordem_producao_items, :class => "btn  btn-default btn-flat"  %>
+            </div>
+        </fieldset>
+        </div><!-- /.box-body -->
+      </div>
+<% end %>

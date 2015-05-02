@@ -22,10 +22,10 @@
                          "data-option-value-method" => :name } %>
          </div>        
         <div class="col-sm-2">
-            <%= f.input :valor,:label => "Valor unitário", input_html: { class: 'valor',   onkeyup: "SomarItens()" } %>
+            <%= f.input :preco,:label => "Valor unitário", input_html: { class: 'preco',   onkeyup: "SomarItens()", :value => (number_with_precision(f.object.preco, :precision => 2) || 0) } %>
         </div>
          <div class="col-sm-2">
-        <%= f.input :subtotal, :disabled => true, input_html: { class: 'subtotal' } %> 
+        <%= f.input :subtotal, :disabled => true, input_html: { class: 'subtotal', :value => (number_with_precision(f.object.subtotal, :precision => 2) || 0) } %> 
 
         </div>
     

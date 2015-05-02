@@ -9,29 +9,34 @@
 <table  class="table table-bordered table-hover">
   <thead>
     <tr>
-      <th>Cliente</th>
-      <th>Data de solicitação</th>
-        <th>Vendedor</th>
+        <th>Cod.</th>
+        <th>Cliente</th>
+        <th>Solicitado em</th>
         <th>Total</th>
-      <th>Status</th>
+        <th>Vendedor</th>
+        <th>Status</th>
     </tr>
   </thead>
 
   <tbody>
     <% @pedido_vendas.each do |pedido_venda| %>
-      <tr>
-        <td><%= link_to pedido_venda.id , edit_pedido_venda_path(pedido_venda) %></td>
-        <td><%= pedido_venda.cliente.nome_fantasia %></td>
-        <td><%= pedido_venda.user.name if pedido_venda.user %></td>
-        <td><%= pedido_venda.data_solicitacao %></td>
-          <td>
-            <%if pedido_venda.pedido_venda_status_id == 2 %>
+<%= link_to edit_pedido_venda_path(pedido_venda) do %>
+
+        <tr>
+            <td><%= link_to pedido_venda.id , edit_pedido_venda_path(pedido_venda) %></td>
+            <td><%= pedido_venda.cliente.nome_fantasia %></td>
+            <td><%= pedido_venda.data_solicitacao %></td>
+            <td><%= pedido_venda.user.name if pedido_venda.user %></td>
+            <td>
+                <%if pedido_venda.pedido_venda_status_id == 2 %>
                 <span class="label label-danger"><%= pedido_venda.pedido_venda_status.name if pedido_venda.pedido_venda_status%></span>
             <%else%>
                 <span class="label label-success"><%= pedido_venda.pedido_venda_status.name if pedido_venda.pedido_venda_status%></span>
             <%end%>
-          </td>
-      </tr>
+            
+            </td>
+        </tr>
+    <% end %>  
     <% end %>
   </tbody>
 </table>

@@ -1,11 +1,8 @@
 
 <%= simple_form_for(@cliente) do |f| %>
-<%= f.error_notification %>
-
+<%= render "shared/messages", object: f.object %>
 <div class="box box-success">
 <div class="box-header">
-    
-    
     <% if can? :update, @cliente %>
         <div class="col-md-2 col-xs-6 pull-right">
             <%=link_to "Imprimir", [@cliente, :print],  :class => "btn btn-block btn-default btn-flat", :target => '_blank'%>
@@ -14,8 +11,6 @@
             <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat", :onclick => 'SubmitAndRemoveMask()' %>
         </div>
     <% end %>
-
-
 </div>
 <div class="box-body">
             <div class="col-sm-6">
@@ -25,7 +20,7 @@
                 <%= f.input :razao_social, :label =>"Razão social"  %>
             </div>
             <div class="col-sm-3"> 
-                <%= f.input :cnpj, as: :cnpj%>
+                <%= f.input :cnpj, as: :cnpj, input_html:{:onchange => 'validarCNPJ()'}%>
             </div>
             <div class="col-sm-3"> 
                 <%= f.input :inscricao_municipal, :label =>"Inscrição municipal" %>
@@ -52,10 +47,7 @@
                 <%= f.input :observacao, as: :text, :label =>"Observações" %>
             </div>
 </div>
-</div><!-- /.box-body -->
- 
-
-                      
+</div><!-- /.box-body -->                   
 <div class="nav-tabs-custom">
                   <ul class="nav nav-tabs">
                       <li class="active"><a href="#contatos" data-toggle="tab" aria-expanded="true">Contatos</a></li>
@@ -70,7 +62,7 @@
                               <%= render "cliente_contato_fields", :f => builder %>
                               <% end %>
                               <div class="col-md-12">  
-                                  <%= link_to_add_association 'Adicionar contato', f, :cliente_contatos %>
+                                  <%= link_to_add_association 'Adicionar contato', f, :cliente_contatos,  :class => "btn  btn-default btn-flat" %>
                               </div>
                           </fieldset>
                       </div><!-- /.tab-pane -->
@@ -81,16 +73,15 @@
                               <%= render "cliente_endereco_fields", :f => builder, :render_options => { :wrapper => 'inline' }  %>
                               <% end %>
                               <div class="col-md-12">  
-                                  <%= link_to_add_association 'Adicionar endereço', f, :cliente_enderecos %>
+                                  <%= link_to_add_association 'Adicionar endereço', f, :cliente_enderecos, :class => "btn  btn-default btn-flat" %>
                               </div>
                           </fieldset>
                       </div><!-- /.tab-pane -->
-                      <div class="tab-pane" id="comentarios">
-                          <div id="cliente_comentarios">
+                      <div class="tab-pane" id="estoques">
+                          <div id="cliente_estoques">
+                            <%= render "cliente_estoque_fields", :f => f %>
                           </div>
                       </div><!-- /.tab-pane -->
                   </div><!-- /.tab-content -->
               </div>    
 <% end %>
-  
-

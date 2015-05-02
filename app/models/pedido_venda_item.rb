@@ -7,7 +7,7 @@ class PedidoVendaItem < ActiveRecord::Base
  
 
     def subtotal
-        [self.quantidade,self.valor].compact.inject(:*)
+        [self.quantidade,self.preco].compact.inject(:*)
     end
 
 end

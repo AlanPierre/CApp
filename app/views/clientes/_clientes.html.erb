@@ -1,0 +1,35 @@
+<div class="box-body">
+    <div class="table-responsive mailbox-messages">
+         <table  class="table table-bordered table-hover">
+<thead>
+<tr> 
+<th>Nome Fantasia</th>
+<th>Tipo de Faturamento</th>
+<th>Status</th>
+<th>Vendedor</th>
+</tr>
+</thead>
+<tbody>
+<% @clientes.each do |cliente| %>
+<tr data-link="<%=edit_cliente_path(cliente) %>">
+<td><%= cliente.nome_fantasia %></td>
+<td><%= cliente.cliente_faturamento.name if cliente.cliente_faturamento%></td>  
+<td>
+<%if cliente.cliente_status_id == 2 %>
+<span class="label label-danger"><%= cliente.cliente_status.name if cliente.cliente_status %></span>
+<%else%>
+<span class="label label-success"><%= cliente.cliente_status.name if cliente.cliente_status %></span>
+<%end%>
+</td>
+<td><%= cliente.user.name if cliente.user %></td>
+</tr>
+<% end %>
+</tbody>
+</table><!-- /.table -->   
+                    
+    </div>  
+</div>
+
+<div class="box-footer clearfix">
+    <%= will_paginate @clientes%>
+</div>

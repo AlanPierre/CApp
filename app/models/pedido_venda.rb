@@ -1,6 +1,6 @@
 class PedidoVenda < ActiveRecord::Base
 
-    attr_accessible :user_id, :cliente_id, :data_solicitacao, :detalhes,  :recibo, :nota_fiscal, :forma_pagamento_id, :pedido_venda_status_id, :pedido_venda_items_attributes
+    attr_accessible :user_id, :cliente_endereco_id, :cliente_id, :data_solicitacao, :detalhes,  :recibo, :nota_fiscal, :forma_pagamento_id, :pedido_venda_status_id, :pedido_venda_items_attributes
     
      include Filterable
     scope :status, -> (status) { where pedido_venda_status_id: status }

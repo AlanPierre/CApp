@@ -7,7 +7,7 @@
 </div>
         
         <div class="col-md-2 col-xs-6 pull-right">
-            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat" %>
+            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat", :onclick => 'SubmitAndRemoveMask()' %>
         </div>
         <%if f.object.id.present? %>
         <div class="col-md-2 col-xs-6 pull-right">
@@ -58,13 +58,11 @@
             <%= render "orcamento_item_fields", :f => builder %>
             <% end %>
                 <div class="col-sm-6">
-                    <%= link_to_add_association 'Adicionar Produto', f, :orcamento_items, :class => "btn  btn-default btn-flat"   %>
+                    <%= link_to_add_association 'Adicionar Produto', f, :orcamento_items, :class => "btn  btn-default btn-flat", :style => 'margin-top: 20px'   %>
                 </div>
-                <div class="col-sm-5">
-                    <div class="col-sm-5 pull-right">
+                    <div class="col-sm-2 pull-right">
                     <%= f.input :calculate_totals, as: :currency, :label => "Total", :disabled => true,  input_html: { class: 'total', id: 'total' } %> 
                     </div>
-                </div>  
         </fieldset>
         </div><!-- /.box-body -->
       </div>

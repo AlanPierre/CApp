@@ -11,10 +11,7 @@ class CreateLayouts < ActiveRecord::Migration
       t.integer :material_id
       t.integer :codigo_barra_id
       t.integer :digitos
-      t.boolean :furo
-      t.boolean :etiqueta
-      t.boolean :porta_cracha
-      t.string :observacao
+      t.text :observacao
 
       t.timestamps null: false
     end

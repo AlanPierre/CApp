@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @ordem_producao.cliente_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @ordem_producao.user_id %>
+</p>
+
+<p>
+  <strong>Ordem producao status:</strong>
+  <%= @ordem_producao.ordem_producao_status_id %>
+</p>
+
+<p>
+  <strong>Data solicitacao:</strong>
+  <%= @ordem_producao.data_solicitacao %>
+</p>
+
+<p>
+  <strong>Data entrega previsao:</strong>
+  <%= @ordem_producao.data_entrega_previsao %>
+</p>
+
+<p>
+  <strong>Data pdf:</strong>
+  <%= @ordem_producao.data_pdf %>
+</p>
+
+<p>
+  <strong>Data finalizacao:</strong>
+  <%= @ordem_producao.data_finalizacao %>
+</p>
+
+<p>
+  <strong>Data entrega:</strong>
+  <%= @ordem_producao.data_entrega %>
+</p>
+
+<p>
+  <strong>Abrir pasta:</strong>
+  <%= @ordem_producao.abrir_pasta %>
+</p>
+
+<p>
+  <strong>Recibo:</strong>
+  <%= @ordem_producao.recibo %>
+</p>
+
+<p>
+  <strong>Nota fiscal:</strong>
+  <%= @ordem_producao.nota_fiscal %>
+</p>
+
+<p>
+  <strong>Dados variaveis:</strong>
+  <%= @ordem_producao.dados_variaveis %>
+</p>
+
+<p>
+  <strong>Detalhes:</strong>
+  <%= @ordem_producao.detalhes %>
+</p>
+
+<p>
+  <strong>Detalhes entrega:</strong>
+  <%= @ordem_producao.detalhes_entrega %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @ordem_producao.tipo %>
+</p>
+
+<%= link_to 'Edit', edit_ordem_producao_path(@ordem_producao) %> |
+<%= link_to 'Back', ordem_producaos_path %>

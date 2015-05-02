@@ -1,3 +1,10 @@
+<% if object.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      Não foi possível salvar, há <%= pluralize(object.errors.count, "erros no formulário") %>.
+    </div>
+  </div>
+<% else %>
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
     <div class="alert alert-success alert-dismissable-<%= name == :notice ? "success" : "error" %>">
@@ -6,3 +13,7 @@
     </div>
   <% end %>
 <% end %>
+
+<% end %>
+
+

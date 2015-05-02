@@ -59,14 +59,9 @@
             <%= f.input :digitos, :label =>"Quantidade de dígitos"%>
         </div>
     
-        <div class="col-sm-2">
-            <%= f.input :furo, :label =>"Furo"%>
-        </div>
-        <div class="col-sm-2">
-            <%= f.input :etiqueta, :label =>"Etiqueta"%>
-        </div>
-        <div class="col-sm-2">
-            <%= f.input :porta_cracha, :label =>"Porta crachá"%>
+        <div class="col-sm-6">
+            <%= f.collection_check_boxes :layout_acabamento_ids, LayoutAcabamento.where(active: true), :id, :name, :item_wrapper_class => 'checkbox_container' %>
+
         </div>
     
          <div class="col-sm-12">

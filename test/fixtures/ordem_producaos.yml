@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cliente_id: 1
+  user_id: 1
+  ordem_producao_status_id: 1
+  data_solicitacao: 2015-04-25
+  data_entrega_previsao: 2015-04-25
+  data_pdf: 2015-04-25
+  data_finalizacao: 2015-04-25
+  data_entrega: 2015-04-25
+  abrir_pasta: false
+  recibo: false
+  nota_fiscal: false
+  dados_variaveis: MyString
+  detalhes: MyString
+  detalhes_entrega: MyString
+  tipo: MyString
+
+two:
+  cliente_id: 1
+  user_id: 1
+  ordem_producao_status_id: 1
+  data_solicitacao: 2015-04-25
+  data_entrega_previsao: 2015-04-25
+  data_pdf: 2015-04-25
+  data_finalizacao: 2015-04-25
+  data_entrega: 2015-04-25
+  abrir_pasta: false
+  recibo: false
+  nota_fiscal: false
+  dados_variaveis: MyString
+  detalhes: MyString
+  detalhes_entrega: MyString
+  tipo: MyString

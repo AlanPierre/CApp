@@ -1,0 +1,34 @@
+
+<div class="box-body">
+<table  class="table table-bordered table-hover">
+  <thead>
+    <tr>
+        <th>Cód</th>
+        <th>Cliente</th>
+      <th>Solicitado em</th>
+        <th>Vendedor</th>
+        <th>Total</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orcamentos.each do |orcamento| %>
+      <tr data-link="<%= edit_orcamento_path(orcamento) %>">
+        <td><%= orcamento.id %></td>
+        <td><%= orcamento.cliente.nome_fantasia %></td>
+        <td><%= l(orcamento.data_solicitacao) if orcamento.data_solicitacao %></td>
+        <td><%= orcamento.user.name if orcamento.user %></td>
+          <td><%= number_to_currency(orcamento.calculate_totals) %></td>
+          <td>
+            <%if orcamento.orcamento_status_id == 2 %>
+            <span class="label label-danger"><%= orcamento.orcamento_status.name if orcamento.orcamento_status %></span>
+        <%else%>
+            <span class="label label-success"><%= orcamento.orcamento_status.name if orcamento.orcamento_status %></span>
+        <%end%>
+          </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div><!-- /.box-body -->

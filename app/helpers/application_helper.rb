@@ -16,6 +16,9 @@ def full_title(page_title)
   link_to title, {:sort => column, :direction => direction}, {:class => css_class}
 end
     
+def is_active?(page_name)
+  "active" if params[:action] == page_name
+end
     
 
   # Shortcut for outputing proper ownership of objects,

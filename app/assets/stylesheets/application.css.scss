@@ -13,12 +13,20 @@
  *= require font-awesome
 *= require ionicons
  *= require admin-lte
- *= require iCheck/square/green
  *= require datatables/dataTables.bootstrap
  *= require_self
  *= require_tree .
  */
 
+.sidebar-scroll::-webkit-scrollbar{width:6px!important}
+.sidebar-scroll::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,.2)}
+.sidebar-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,.08)}
+
+.table.table-bordered.table-hover{
+    tr{
+        cursor: pointer;
+    }
+}
 
 .nested-fields{
   border-bottom: 1px solid #eee;
@@ -35,20 +43,43 @@ input::-webkit-inner-spin-button {
 }
 
 
-.navbar-nav>.messages-menu>.dropdown-menu>li{
-    .menu>li>a>p{margin: 0px !important}
-    .menu>li>a>h4{margin: 0px !important}
-    .menu>li>a, .navbar-nav>.messages-menu>.dropdown-menu>li .menu>li>a, .navbar-nav>.tasks-menu>.dropdown-menu>li .menu>li>a{
-      border-bottom: none !important;}
+.navbar-nav{
+    
+    .messages-menu>.dropdown-menu>li{
+        .menu li a{
+            p, h4{
+            margin: 0px !important
+            }
+        }
+        .menu>li>a, .messages-menu>.dropdown-menu>li .menu>li>a, .navbar-nav>.tasks-menu>.dropdown-menu>li .menu>li>a{
+            border-bottom: none !important;
+        }
+    }
+    .notifications-menu>.dropdown-menu>li .menu>li, .messages-menu>.dropdown-menu>li .menu>li, .tasks-menu>.dropdown-menu>li .menu>li{
+        border-bottom: 1px solid #f4f4f4 !important;
+    }
+    .user-menu .dropdown-menu{
+        width: 193px !important;
+    }
+
     
 }
 
-.navbar-nav>.notifications-menu>.dropdown-menu>li .menu>li, .navbar-nav>.messages-menu>.dropdown-menu>li .menu>li, .navbar-nav>.tasks-menu>.dropdown-menu>li .menu>li{
-      border-bottom: 1px solid #f4f4f4 !important;
+
+.radio label, .checkbox label{
+    font-weight: bold;
 }
 
-.navbar-nav>.user-menu>.dropdown-menu{
-width: 193px !important;}
+.icheckbox_flat-yellow, .iradio_flat-yellow{
+    margin-right: 5px !important;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+    background-color: #00a65a;
+  border-color: #00a65a;
+    
+}
+
 
 .box-body{
     display: inline-block;
@@ -72,3 +103,24 @@ width: 193px !important;}
 textarea {
   max-width: 100%;
 }
+
+.sidebar-scroll{
+   max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden; 
+    
+}
+
+
+
+.acabamentos{
+    padding: 25px 15px;
+    
+    span{
+        margin-right: 25px;
+    }  
+} 
+
+
+
+

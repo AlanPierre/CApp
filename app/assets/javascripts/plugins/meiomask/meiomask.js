@@ -195,7 +195,7 @@
                 },
                 
                 'decimal_default': {
-                    mask: '999999999.99',
+                    mask: '99.999999999999',
                     type: 'reverse',
                     defaultValue: '000'
                 },

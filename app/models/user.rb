@@ -1,6 +1,13 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   belongs_to :departamento
+    has_many :clientes
+    has_many :orcamentos
+    has_many :orcamento_items
+    has_many :pedido_vendas
+    has_many :pedido_venda_items
+    has_many :ordem_producaos
+    has_many :ordem_producao_items
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

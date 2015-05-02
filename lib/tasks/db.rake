@@ -7,6 +7,8 @@ namespace :db do
 
         Role.create(name: 'SuperAdmin')
         Role.create(name: 'Admin')
+        Role.create(name: 'Intermediario')
+        Role.create(name: 'Padrao')
         
         FormaPagamento.create(name: 'Boleto', active: true) 
         FormaPagamento.create(name: 'Depósito', active: true) 
@@ -35,9 +37,20 @@ namespace :db do
         OrcamentoStatus.create(name: 'Cancelado', active: true)
         OrcamentoStatus.create(name: 'Cotação', active: true)
         OrcamentoStatus.create(name: 'Negociando', active: true)
-        OrcamentoStatus.create(name: 'Pedeu', active: true)
+        OrcamentoStatus.create(name: 'Perdeu', active: true)
         OrcamentoStatus.create(name: 'Refeito', active: true)
         OrcamentoStatus.create(name: 'Prospecção', active: true)
+        
+        OrdemProducaoStatus.create(name: 'Cancelada', active: true)
+        OrdemProducaoStatus.create(name: 'A Liberar', active: true)
+        OrdemProducaoStatus.create(name: 'A Produzir', active: true)    
+        OrdemProducaoStatus.create(name: 'Em Produção', active: true)
+        OrdemProducaoStatus.create(name: 'Finalizada', active: true)        
+        OrdemProducaoStatus.create(name: 'Entregue', active: true)
+          
+        LayoutAcabamento.create(name: 'Furo', active: true)
+        LayoutAcabamento.create(name: 'Cantos Redondos', active: true)
+        LayoutAcabamento.create(name: 'Holografia', active: true)
         
         PedidoLayoutStatus.create(name: 'A Produzir', active: true)
         PedidoLayoutStatus.create(name: 'Alteração', active: true)

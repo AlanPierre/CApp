@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
    layout '../default/application'
     
 rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => exception.message
+    redirect_to access_denied_url
   end
 
     

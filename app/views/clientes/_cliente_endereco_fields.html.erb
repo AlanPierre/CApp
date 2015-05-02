@@ -1,25 +1,24 @@
 <div class="nested-fields item">
-
-<div class="box-tools pull-right">
-    <%= link_to_remove_association f  do%>
-    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-    <% end %>
-</div><!-- /.box-tools -->
-
+<div class="col-md-12">    
+<div class="pull-right">
+<%= link_to_remove_association f  do%>
+    <span >×</span>
+<% end %>
+</div>
+</div>
 
         <div class="col-sm-3">
             <%= f.input :name, :label => "Título", input_html: {id: "name"}%>
         </div>
-        <div class="col-sm-3">
-            <%= f.input :observacao, :label => 'Observações' %>
-        </div>
-        <div class="col-sm-3">
+        <div style="clear:both;"></div>
+        
+        <div class="col-sm-2">
             <%= f.input :cep, input_html: {class: "cep", onkeyup: "BuscarCep()"}%>
         </div>        
-        <div class="col-sm-3">
+        <div class="col-sm-5">
             <%= f.input :rua, input_html: { class: "logradouro"} %>
         </div>    
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <%= f.input :numero, :label => 'Número' %>
         </div>
         <div class="col-sm-3">
@@ -30,7 +29,7 @@
         </div>
         <div class="col-sm-3">
             <%var = "estado_" + (Random.rand(10...42)).to_s %>
-         <%= f.input :estado_id, collection: Estado.all, input_html: { id: var, class: 'estado', onchange: "DynamicSelect()" }%>
+         <%= f.input :estado_id, collection: Estado.all,  label_method: :uf,  input_html: { id: var, class: 'estado', onchange: "DynamicSelect()" }%>  
         </div>
         <div class="col-sm-3">
             <%= f.input :cidade_id, collection: Cidade.where("estado_id = ?", f.object.estado_id),input_html: { 
@@ -48,5 +47,8 @@
         <div class="col-sm-3">
             <%= f.label :rota %>
             <%= f.select :rota, Date::DAYNAMES.zip((0..6).to_a),  { :include_blank=>true }, { :class => 'string optional form-control' } %>
+        </div>
+        <div class="col-sm-6">
+            <%= f.input :observacao, :label => 'Observações' %>
         </div>
 </div>

@@ -5,4 +5,3 @@ require File.expand_path('../application', __FILE__)
 Rails.application.initialize!
 
 InheritedResources.flash_keys = [ :success, :failure ]
-

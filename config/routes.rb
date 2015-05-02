@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :ordem_producaos do
+      get "/update_produtos_op" => "ordem_producaos#update_produtos_op"
+  end
+    
   resources :layouts
   resources :orcamentos
   resources :pedido_vendas do
@@ -25,9 +29,10 @@ Rails.application.routes.draw do
     root 'devise/sessions#new'
     
     get 'activities/index'
-    get 'cep/busca-cep/:cep' => 'default#busca_cep'
+    get "access_denied" => "default#access_denied"
     get "estado/:estado_id/cidades" => "default#update_cidades"
     get "produto/:produto_id/materials" => "default#update_produtos"
+    get "estoque/:tipo_id/:cliente_id/:produto_id/materials" => "default#update_materials_op"
     get "cliente/:cliente_id/enderecos" => "default#busca_endereco"
     get "impressora/:impressora_id/configs" => "default#update_impressora_configs"
     get "gera-venda/:orcamento_id" => "default#gerar_venda"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422221414) do
+ActiveRecord::Schema.define(version: 20150425165532) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -202,9 +202,6 @@ ActiveRecord::Schema.define(version: 20150422221414) do
     t.integer  "material_id",             limit: 4
     t.integer  "codigo_barra_id",         limit: 4
     t.integer  "digitos",                 limit: 4
-    t.boolean  "furo",                    limit: 1
-    t.boolean  "etiqueta",                limit: 1
-    t.boolean  "porta_cracha",            limit: 1
     t.string   "observacao",              limit: 255
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
@@ -275,6 +272,57 @@ ActiveRecord::Schema.define(version: 20150422221414) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.integer  "cliente_endereco_id", limit: 4
+  end
+
+  create_table "ordem_procucao_items", force: :cascade do |t|
+    t.integer  "ordem_producao_id", limit: 4
+    t.integer  "produto_id",        limit: 4
+    t.integer  "material_id",       limit: 4
+    t.integer  "user_id",           limit: 4
+    t.integer  "layout_id",         limit: 4
+    t.integer  "quantidade",        limit: 4
+    t.integer  "perdas_quantidade", limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "ordem_producao_items", force: :cascade do |t|
+    t.integer  "ordem_producao_id", limit: 4
+    t.integer  "produto_id",        limit: 4
+    t.integer  "material_id",       limit: 4
+    t.integer  "user_id",           limit: 4
+    t.integer  "layout_id",         limit: 4
+    t.integer  "quantidade",        limit: 4
+    t.integer  "perdas_quantidade", limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "ordem_producao_statuses", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.boolean  "active",     limit: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "ordem_producaos", force: :cascade do |t|
+    t.integer  "cliente_id",               limit: 4
+    t.integer  "user_id",                  limit: 4
+    t.integer  "ordem_producao_status_id", limit: 4
+    t.date     "data_solicitacao"
+    t.date     "data_entrega_previsao"
+    t.date     "data_pdf"
+    t.date     "data_finalizacao"
+    t.date     "data_entrega"
+    t.boolean  "abrir_pasta",              limit: 1
+    t.boolean  "recibo",                   limit: 1
+    t.boolean  "nota_fiscal",              limit: 1
+    t.string   "dados_variaveis",          limit: 255
+    t.string   "detalhes",                 limit: 255
+    t.string   "detalhes_entrega",         limit: 255
+    t.string   "tipo",                     limit: 255
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "pedido_layout_statuses", force: :cascade do |t|

@@ -1,16 +1,38 @@
 <div class="nested-fields item">
-    <div class="col-sm-3">  
-        <%= f.input :mix_produto_id, :disabled => true, :label => 'Saldo' %>
-    </div>
-    <div class="col-sm-3">
-        <%= f.input :minimo %>
-    </div>
-    <div class="col-sm-3">  
-        <%= f.input :mix_produto_id, :disabled => true, :label => 'Saldo' %>
-    </div>
-    <div class="col-sm-3">
-        <%= f.input :minimo %>
-    </div>
+    <table  class="table table-bordered table-hover">
+  <thead>
+    <tr>
+        <th>Produto</th>
+        <th>Material</th>
+        <th>Saldo</th>
+        <th>Mínimo</th>
+        <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cliente.cliente_estoques.each do |estoque| %>
+        <tr>
+            <td><%= estoque.produto.name if estoque.produto%></td>
+            <td><%= estoque.material.name if estoque.material %></td>
+            <td><%= estoque.saldo %></td>
+            <td> <% @cliente.cliente_estoque_minimos.each do |minimo| %>
+                    <%if minimo.produto_id == estoque.produto_id && minimo.material_id ==  estoque.material_id%>
+                        <%= minimo.quantidade %>
+                    <% end %>
+                <% end %>
+            </td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
+ 
+    <%= f.simple_fields_for :cliente_estoque_minimos do |builder| %>
+                <% end %>
+                <%= link_to_add_association 'Editar', f, :cliente_estoque_minimos %>
+            </td>                
+
 </div>
+
 
 

@@ -4,25 +4,28 @@
   </div>
     
 <div class="col-md-12 margin-bottom">
-<%= form_tag clientes_path, :method => 'get' do %>   
+<%= form_tag clientes_path, :id => "search", :method => 'get' do %>   
     <%= text_field_tag :search_with, params[:search_with], :class => 'form-control  input-sm', :placeholder => "Buscar cliente" %> 
       <span class="glyphicon glyphicon-search form-control-feedback"></span>
 <% end %>  
   </div>   
         
-<form class="filter_form", method="get">
+
+<%= form_tag clientes_path, :id => "filter_form", :class => "filter_form", :method => 'get' do %>   
 
   <div class="col-md-12">    
   <div class="box box-solid">
     <div class="box-header with-border">
       <h3 class="box-title">Status</h3>
     </div>
-    <div class="box-body no-padding">
+    <div class="box-body no-padding sidebar-scroll">
         <ul class="nav nav-pills nav-stacked">
             <% @status.each do |status| %>
              <li>
-            <a href=""><%= check_box_tag("status[]", status.id) %>
-                <%= status.name %> </a>
+                <a href='#' onclick="SubmitFilter();return false;">              
+                    <%= check_box_tag "status[]", status.id %>
+                    <%= status.name %>
+                 </a>
             </li>
             <% end %>
 
@@ -38,20 +41,39 @@
     <div class="box-header with-border">
       <h3 class="box-title">Vendedores</h3>
     </div>
-    <div class="box-body no-padding">
+    <div class="box-body no-padding sidebar-scroll">
       <form class="filter_form", method="get">
         <ul class="nav nav-pills nav-stacked">
             <% @vendedores.each do |vendedor| %>
              <li>
-            <a href=""><%= check_box_tag("vendedor[]", vendedor.id) %>
+                <a href='#' onclick="SubmitFilter();return false;">
+                    <%= check_box_tag("vendedor[]", vendedor.id) %>
                 <%= vendedor.name %> </a>
             </li>
             <% end %>
       </ul>
     </div><!-- /.box-body -->
   </div><!-- /. box -->
-                      <input type="submit" value="Filtrar" class="btn btn-block btn-default btn-flat" />
-
+    </div> 
+  <div class="col-md-12">    
+  <div class="box box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">Ramo de Mercado</h3>
+    </div>
+    <div class="box-body no-padding sidebar-scroll">
+      <form class="filter_form", method="get">
+        <ul class="nav nav-pills nav-stacked">
+            <% @ramos.each do |ramo| %>
+             <li>
+                <a href='#' onclick="SubmitFilter();return false;">
+                <%= check_box_tag("ramo[]", ramo.id) %>
+                <%= ramo.name %> </a>
+            </li>
+            <% end %>
+      </ul>
+    </div><!-- /.box-body -->
+  </div><!-- /. box -->
+<% end %>
 </div>
 
     

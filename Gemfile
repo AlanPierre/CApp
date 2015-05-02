@@ -13,8 +13,6 @@ gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'simple_form'
 gem 'cocoon'
 gem 'adminlte-rails'
-gem 'icheck-rails'
-gem 'brazilian-rails'
 gem 'public_activity'
 gem 'will_paginate'
 

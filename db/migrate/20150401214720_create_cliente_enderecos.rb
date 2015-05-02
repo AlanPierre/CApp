@@ -9,7 +9,7 @@ class CreateClienteEnderecos < ActiveRecord::Migration
       t.string :rua
       t.integer :numero
       t.string :complemento
-      t.string :cep
+      t.string :cep, :limit => 8
       t.string :observacao
       t.integer :rota
       t.integer :forma_entrega_id

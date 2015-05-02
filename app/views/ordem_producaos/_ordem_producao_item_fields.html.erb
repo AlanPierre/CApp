@@ -1,0 +1,57 @@
+<div class="nested-fields item">
+<div class="col-md-12">    
+<div class="pull-right">
+<%= link_to_remove_association f  do%>
+    <span >×</span>
+<% end %>
+</div>
+</div>
+        <div class="col-sm-2">
+            <%= f.input :quantidade, input_html: { class: 'quantidade'} %>
+        </div>
+        <div class="col-sm-3">
+            <%var = "produto_" + (Random.rand(10...42)).to_s %>
+            <%if f.object.blank? %>
+            <%= label_tag(:produto_id, "Produto") %>
+            <%= f.select :produto_id, options_for_select(@produtos.collect { |produto|
+    [produto.name, produto.id] }, 0), {}, { id: var, onchange: "DynamicSelectOPMaterial()", :class => 'select optional form-control produtos'}%>
+            <%else %>
+<%= f.input :produto_id, collection: Produto.all ,input_html: { id: var, onchange: "DynamicSelectOPMaterial()", :class => 'select optional form-control produtos'} %>
+            <%end %>
+          
+        </div>
+    
+     
+    
+        <div class="col-sm-3">
+            <%= f.input :material_id, collection: Material.where(id: f.object.material_id),input_html: {:class => 'materials',
+                         "data-option-dependent" => true,
+                        "data-option-cliente" => 'cliente',
+                        "data-option-tipo" => 'tipo',
+                         "data-option-produto" => var,
+                         "data-option-url" => "/estoque/tipo/cliente/produto/materials.json",
+                         "data-option-key-method" => :id,
+                         "data-option-value-method" => :name }, :prompt => 'Selecione' %>
+         </div>
+
+    <div class="col-sm-3">
+         <%= f.input :layout_id, collection: Layout.all %>
+        </div>
+        
+            <div class="col-sm-12 acabamentos">
+            <%= f.collection_check_boxes :layout_acabamento_ids, LayoutAcabamento.where(active: true), :id, :name %>
+        </div>
+    <div class="clearfix"></div>
+        <div class="col-sm-3">
+             <%= f.input :user_id,  collection: User.where(departamento_id: 2), :label => 'Produzido por', :include_blank => true %>
+        </div>
+        <div class="col-sm-2">
+           <%= f.input :perdas_quantidade, :label => 'Perdas' %> 
+            
+        </div>
+         
+    
+</div>
+
+
+

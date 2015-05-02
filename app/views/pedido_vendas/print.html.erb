@@ -10,11 +10,11 @@
       <div class="col-sm-4 invoice-col">
         <b>Cód. Pedido de Venda:</b> <%=@pedido_venda.id%><br/>
         <b>Data de Solicitação:</b> <%= l(@pedido_venda.data_solicitacao) if @pedido_venda.data_solicitacao %><br/>
-        <b>Forma de Pagamento:</b> <%=@pedido_venda.forma_pagamento.name%><br/>
+        <b>Forma de Pagamento:</b> <%=@pedido_venda.forma_pagamento.name if @pedido_venda.forma_pagamento%><br/>
       </div><!-- /.col -->
       <div class="col-sm-4 invoice-col">
-        <b>Vendedor:</b> <%=@pedido_venda.user.name%><br/>
-        <b>Status:</b> <%=@pedido_venda.pedido_venda_status.name%><br/>
+        <b>Vendedor:</b> <%=@pedido_venda.user.name if @pedido_venda.user%><br/>
+        <b>Status:</b> <%=@pedido_venda.pedido_venda_status.name if @pedido_venda.pedido_venda_status%><br/>
           <%if @pedido_venda.recibo == true%>
           Emitir recibo<br/>
           <%end%>
