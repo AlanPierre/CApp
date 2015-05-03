@@ -3,7 +3,7 @@ class CreateClienteContatos < ActiveRecord::Migration
     create_table :cliente_contatos do |t|
       t.string :nome
       t.string :email
-      t.integer :telefone, :limit => 11
+      t.string :telefone, :limit => 11
       t.string :observacao
       t.integer :cliente_id
 
