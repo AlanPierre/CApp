@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   #before_action :authenticate_user!
   include PublicActivity::StoreController 
   include ActionView::Helpers::TextHelper
-  
+  before_filter :authenticate_user!
+    
    layout '../default/application'
     
 rescue_from CanCan::AccessDenied do |exception|

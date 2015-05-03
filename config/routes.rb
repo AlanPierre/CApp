@@ -27,7 +27,6 @@ Rails.application.routes.draw do
     end
     
     root 'devise/sessions#new'
-    
     get 'activities/index'
     get "access_denied" => "default#access_denied"
     get "estado/:estado_id/cidades" => "default#update_cidades"
