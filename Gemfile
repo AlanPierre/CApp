@@ -29,6 +29,7 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'pg', :group => :production
 gem 'mysql2' , :group => :development
+gem 'rails_12factor', group: :production
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

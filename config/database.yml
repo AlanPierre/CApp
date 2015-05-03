@@ -19,6 +19,8 @@ test:
 
 production:
   adapter: postgresql
-  database: capp_production
+  host: localhost
+  database: capps_production
   username: capp
-  password: <%= ENV['CAPP_DATABASE_PASSWORD'] %>
+  password: <%= ENV['CAPPS_DATABASE_PASSWORD'] %>
+
