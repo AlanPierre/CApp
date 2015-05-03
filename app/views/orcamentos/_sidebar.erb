@@ -9,8 +9,8 @@
       <span class="glyphicon glyphicon-search form-control-feedback"></span>
 <% end %>  
   </div>   
-        
-
+                
+    
 <%= form_tag orcamentos_path, :id => "filter_form", :class => "filter_form", :method => 'get' do %>   
 
   <div class="col-md-12">    
@@ -55,7 +55,26 @@
     </div><!-- /.box-body -->
   </div><!-- /. box -->
 </div> 
-
-
-<%end%>    
-</div>
+    
+  <div class="col-md-12">    
+  <div class="box box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">Clientes</h3>
+    </div>
+    <div class="box-body no-padding sidebar-scroll">
+      <form class="filter_form", method="get">
+        <ul class="nav nav-pills nav-stacked">
+            <% @clientes.each do |cliente| %>
+             <li>
+                <a href='#' onclick="SubmitFilter();return false;">
+                    <%= check_box_tag("cliente[]", cliente.id) %>
+                <%= cliente.nome_fantasia %> </a>
+            </li>
+            <% end %>
+      </ul>
+    </div><!-- /.box-body -->
+  </div><!-- /. box -->
+</div>       
+    
+<% end %>  
+</div> 

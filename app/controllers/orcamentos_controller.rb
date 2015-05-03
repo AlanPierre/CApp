@@ -5,8 +5,8 @@ class OrcamentosController < InheritedResources::Base
     def index
         @status = OrcamentoStatus.all  
          @vendedores = User.where(departamento_id: 1)
-         @ramos = ClienteRamo.order('name').all
-         @orcamentos  = Orcamento.filter(params.slice(:status, :vendedor, :search_with)).order("ID").paginate(:per_page => 50, :page => params[:page])
+         @clientes = Cliente.order('nome_fantasia').where(:cliente_status_id => 1)
+         @orcamentos  = Orcamento.filter(params.slice(:status, :vendedor, :search_with, :cliente)).order("ID").paginate(:per_page => 50, :page => params[:page])
 
      end 
     

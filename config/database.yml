@@ -18,7 +18,7 @@ test:
   database: capp_test
 
 production:
-  <<: *default
+  adapter: postgresql
   database: capp_production
   username: capp
   password: <%= ENV['CAPP_DATABASE_PASSWORD'] %>

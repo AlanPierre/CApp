@@ -6,6 +6,7 @@
         <th>Cód</th>
         <th>Cliente</th>
       <th>Solicitado em</th>
+        <th>Aprovado em</th>
         <th>Vendedor</th>
         <th>Total</th>
       <th>Status</th>
@@ -18,6 +19,7 @@
         <td><%= orcamento.id %></td>
         <td><%= orcamento.cliente.nome_fantasia %></td>
         <td><%= l(orcamento.data_solicitacao) if orcamento.data_solicitacao %></td>
+          <td><%= l(orcamento.data_aprovacao) if orcamento.data_aprovacao %></td>
         <td><%= orcamento.user.name if orcamento.user %></td>
           <td><%= number_to_currency(orcamento.calculate_totals) %></td>
           <td>

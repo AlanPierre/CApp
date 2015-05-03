@@ -26,7 +26,10 @@ gem 'coffee-script-source', '1.8.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 # Use mysql as the database for Active Record
-gem 'mysql2'
+
+gem 'pg', :group => :production
+gem 'mysql2' , :group => :development
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

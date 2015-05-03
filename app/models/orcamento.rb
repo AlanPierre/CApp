@@ -9,7 +9,11 @@ class Orcamento < ActiveRecord::Base
     scope :vendedor, -> (vendedor) {
         vendedores = vendedor.split(',')
         where user_id: vendedores }
-
+    
+    
+    scope :cliente, -> (cliente) {
+        clientes = cliente.split(',')
+        where cliente_id: clientes }
     
     scope :search_with, -> (search) {where('id like?', "%#{search}%") }
 
