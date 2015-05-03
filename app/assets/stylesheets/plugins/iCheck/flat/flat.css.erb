@@ -1,3 +1,6 @@
+//= depend_on_asset "flat.png"
+//= depend_on_asset "flat@2x.png"
+
 /* iCheck plugin flat skin, black
 ----------------------------------- */
 .icheckbox_flat,
@@ -9,7 +12,7 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background: url(flat.png) no-repeat;
+    background-image:url('<%= asset_path("flat.png") %> ') no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -49,7 +52,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_flat,
     .iradio_flat {
-        background-image: url(flat@2x.png);
+        background-image:url('<%= asset_path("flat@2x.png") %> ') no-repeat;
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }

@@ -1,3 +1,6 @@
+//= depend_on_asset "yellow.png"
+//= depend_on_asset "yellow@2x.png"
+
 /* iCheck plugin Flat skin, yellow
 ----------------------------------- */
 .icheckbox_flat-yellow,
@@ -9,7 +12,7 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background: image-url(yellow.png) no-repeat;
+    background-image:url('<%= asset_path("yellow.png") %> ') no-repeat;
     border: none;
     cursor: pointer;
 }
@@ -49,7 +52,7 @@
        only screen and (min-device-pixel-ratio: 1.5) {
     .icheckbox_flat-yellow,
     .iradio_flat-yellow {
-        background-image: image-url(yellow@2x.png);
+        background-image:url('<%= asset_path("yellow@2x.png") %> ') no-repeat;
         -webkit-background-size: 176px 22px;
         background-size: 176px 22px;
     }
