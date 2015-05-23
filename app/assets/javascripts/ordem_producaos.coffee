@@ -8,7 +8,7 @@ $ ->
       dataType: 'script'
       data: {
         tipo_id: $("#tipo option:selected").val();
-        cliente_id: $("#cliente option:selected").val()
+        cliente_id: $("#cliente option:selected").val();
       }
       error: (jqXHR, textStatus, errorThrown) ->
         console.log("AJAX Error: #{textStatus}")

@@ -2,7 +2,7 @@
 <div class="col-md-12">    
 <div class="pull-right">
 <%= link_to_remove_association f  do%>
-    <span >×</span>
+    <i class="fa fa-minus"></i>
 <% end %>
 </div>
 </div>
@@ -20,9 +20,7 @@
             <%end %>
           
         </div>
-    
-     
-    
+
         <div class="col-sm-3">
             <%= f.input :material_id, collection: Material.where(id: f.object.material_id),input_html: {:class => 'materials',
                          "data-option-dependent" => true,
@@ -39,9 +37,11 @@
         </div>
         
             <div class="col-sm-12 acabamentos">
-            <%= f.collection_check_boxes :layout_acabamento_ids, LayoutAcabamento.where(active: true), :id, :name %>
+            <%= f.collection_check_boxes :layout_acabamento_ids, LayoutAcabamento.where(active: true).order("name"), :id, :name %>
         </div>
     <div class="clearfix"></div>
+    
+    
         <div class="col-sm-3">
              <%= f.input :user_id,  collection: User.where(departamento_id: 2), :label => 'Produzido por', :include_blank => true %>
         </div>

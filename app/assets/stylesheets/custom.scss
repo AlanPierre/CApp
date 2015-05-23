@@ -1,3 +1,376 @@
 .remove_fields{
     margin-top: 50%;
 }
+
+
+.content{
+    background: transparent !important;
+}
+
+
+.alert.alert-success.alert-dismissable-error{
+    margin-left: 0px;
+}
+
+.sidebar-filter{
+    .box-header {padding: 5px;}
+    .box-header .box-title{ font-size: 18px;  padding: 5px;}
+    .box-body {  padding-bottom: 0px;}
+    
+}
+
+.actions-bar{
+    position: fixed;
+    z-index: 1030;
+    background: rgba(255, 255, 255, 0.81);;
+    bottom: 0;
+    padding: 15px 30px;
+    width: 100%;
+    border-top: 1px solid #f1f1f1;
+
+}
+.sidebar-collapse .actions-bar{
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .actions-bar{
+      width: calc(100% - 230px);
+    }
+}
+
+.slimScrollDiv ul.menu::-webkit-scrollbar{width:6px!important}
+.slimScrollDiv ul.menu::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,.2)}
+.slimScrollDiv ul.menu::-webkit-scrollbar-track{background:rgba(255,255,255,.08)}
+
+.sidebar-scroll::-webkit-scrollbar{width:6px!important}
+.sidebar-scroll::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,.2)}
+.sidebar-scroll::-webkit-scrollbar-track{background:rgba(255,255,255,.08)}
+
+
+.table.table-bordered.table-hover{
+    tr{
+        cursor: pointer;
+    }
+}
+
+.help-block{
+    font-size: 11px;
+}
+
+.modal.fade {
+  overflow: hidden;
+}
+
+.nested-fields{
+  border-bottom: 1px solid #eee;
+  display: inline-block;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.alert{
+    margin: 15px 0px;
+}
+.navbar-nav{
+    
+    .messages-menu>.dropdown-menu>li{
+        .menu li a{
+            p, h4{
+            margin: 0px !important
+            }
+        }
+        .menu>li>a, .messages-menu>.dropdown-menu>li .menu>li>a, .navbar-nav>.tasks-menu>.dropdown-menu>li .menu>li>a{
+            border-bottom: none !important;
+        }
+    }
+    .notifications-menu>.dropdown-menu>li .menu>li, .messages-menu>.dropdown-menu>li .menu>li, .tasks-menu>.dropdown-menu>li .menu>li{
+        border-bottom: 1px solid #f4f4f4 !important;
+    }
+    .user-menu .dropdown-menu{
+        width: 193px !important;
+    }
+
+    
+}
+
+
+.radio label, .checkbox label{
+    font-weight: bold;
+}
+
+.icheckbox_flat-yellow, .iradio_flat-yellow{
+    margin-right: 5px !important;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+    background-color: #00a65a;
+  border-color: #00a65a;
+    
+}
+
+
+.box-body{
+    display: inline-block;
+    width: 100%;}
+
+
+.form-control-feedback {
+  position: absolute;
+  top: 0;
+  right: 25px;
+    z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  pointer-events: none;
+}
+
+
+textarea {
+  max-width: 100%;
+}
+
+.sidebar-scroll{
+   max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden; 
+    
+}
+
+
+
+.acabamentos{
+    padding: 25px 15px;
+    
+    span{
+        margin-right: 25px;
+    }  
+} 
+
+
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.pace-inactive {
+  display: none;
+}
+
+.pace .pace-progress {
+  background: #f0ad4e;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  height: 2px;
+}
+
+
+.filter_row{
+    border-top: 3px solid #00a65a;
+    .box{
+        margin-bottom: 5px;
+        border: none;
+        .box-header{
+            padding-bottom: 0px;
+            .box-title{
+                padding-bottom: 0px;    
+            }
+        }
+    }
+} 
+
+.search_with_date input{
+    width: 45%;
+    float: left;
+    border: none;
+    text-align: center
+}
+
+.search_with_date{
+background: #fff;
+    border: 1px solid;
+  border-color: #d2d6de;
+    padding: 0px;
+    float: left;
+    width: 100%
+}
+.search_with_date span{
+    float: left;
+      padding: 4px 0px;
+}
+
+
+/*
+ * Skin: Green
+ * -----------
+ */
+.skin-green .main-header .navbar {
+  background-color: #00a65a;
+}
+.skin-green .main-header .navbar .nav > li > a {
+  color: #ffffff;
+}
+.skin-green .main-header .navbar .nav > li > a:hover,
+.skin-green .main-header .navbar .nav > li > a:active,
+.skin-green .main-header .navbar .nav > li > a:focus,
+.skin-green .main-header .navbar .nav .open > a,
+.skin-green .main-header .navbar .nav .open > a:hover,
+.skin-green .main-header .navbar .nav .open > a:focus {
+  background: rgba(0, 0, 0, 0.1);
+  color: #f6f6f6;
+}
+.skin-green .main-header .navbar .navbar-custom-menu > .nav {
+  margin-right: 10px;
+}
+.skin-green .main-header .navbar .sidebar-toggle {
+  color: #ffffff;
+}
+.skin-green .main-header .navbar .sidebar-toggle:hover {
+  color: #f6f6f6;
+  background: rgba(0, 0, 0, 0.1);
+}
+.skin-green .main-header .navbar .sidebar-toggle {
+  color: #fff;
+}
+.skin-green .main-header .navbar .sidebar-toggle:hover {
+  background-color: #008d4c;
+}
+@media (max-width: 767px) {
+  .skin-green .main-header .navbar .dropdown-menu li.divider {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .skin-green .main-header .navbar .dropdown-menu li a {
+    color: #fff;
+  }
+  .skin-green .main-header .navbar .dropdown-menu li a:hover {
+    background: #008d4c;
+  }
+}
+.skin-green .main-header .logo {
+  background-color: #008d4c;
+  color: #ffffff;
+  border-bottom: 0px solid transparent;
+}
+.skin-green .main-header .logo > a {
+  color: #ffffff;
+}
+.skin-green .main-header .logo:hover {
+  background: #008749;
+}
+.skin-green .main-header li.user-header {
+  background-color: #00a65a;
+}
+.skin-green .content-header {
+  background: transparent;
+}
+.skin-green .user-panel > .info,
+.skin-green .user-panel > .info > a {
+  color: #fff;
+}
+.skin-green .sidebar-menu > li.header {
+  color: #4b646f;
+  background: #1a2226;
+}
+.skin-green .sidebar-menu > li > a {
+  border-left: 3px solid transparent;
+  margin-right: 1px;
+}
+.skin-green .sidebar-menu > li > a:hover,
+.skin-green .sidebar-menu > li.active > a {
+  color: #ffffff;
+  background: #404c50;
+  border-left-color: #00a65a;
+}
+.skin-green .sidebar-menu > li > .treeview-menu {
+  margin: 0 1px;
+  background: #2c3b41;
+}
+.skin-green .wrapper,
+.skin-green .main-sidebar,
+.skin-green .left-side {
+  background: #38454a;
+}
+.skin-green .sidebar a {
+  color: #b8c7ce;
+}
+.skin-green .sidebar a:hover {
+  text-decoration: none;
+}
+.skin-green .treeview-menu > li > a {
+  color: #8aa4af;
+}
+.skin-green .treeview-menu > li.active > a,
+.skin-green .treeview-menu > li > a:hover {
+  color: #ffffff;
+}
+.skin-green .sidebar-form {
+  border-radius: 3px;
+  border: 1px solid #374850;
+  margin: 10px 10px;
+}
+.skin-green .sidebar-form input[type="text"],
+.skin-green .sidebar-form .btn {
+  box-shadow: none;
+  background-color: #374850;
+  border: 1px solid transparent;
+  height: 35px;
+  -webkit-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  -o-transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+  transition: all 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+}
+.skin-green .sidebar-form input[type="text"] {
+  color: #666;
+  border-top-left-radius: 2px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 2px !important;
+}
+.skin-green .sidebar-form input[type="text"]:focus,
+.skin-green .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+  background-color: #fff;
+  color: #666;
+}
+.skin-green .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
+  border-left-color: #fff;
+}
+.skin-green .sidebar-form .btn {
+  color: #999;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 2px !important;
+  border-bottom-right-radius: 2px !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+
+
+
+
+.sidebar .sidebar-menu > li > a{
+    padding: 15px 5px 15px 15px;
+  border-bottom: 1px solid #465054;
+  font-size: 14px;  
+    
+}
+
+.sidebar-filter{
+    
+    
+}

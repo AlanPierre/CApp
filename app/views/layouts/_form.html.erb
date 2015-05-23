@@ -1,14 +1,12 @@
 <%= simple_form_for(@layout) do |f| %>
+  <%= render "shared/messages", object: f.object %>
 
 <div class="box box-success">
 <div class="box-header">
         <div class="col-md-2 pull-left">
             <h3 class="no-margin box-title">Código:<%= f.object.id %></h3>
 </div>
-        
-        <div class="col-md-2 col-xs-6 pull-right">
-            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat" %>
-        </div>
+
 </div>
 <div class="box-body">
         <div class="col-sm-6">
@@ -59,8 +57,8 @@
             <%= f.input :digitos, :label =>"Quantidade de dígitos"%>
         </div>
     
-        <div class="col-sm-6">
-            <%= f.collection_check_boxes :layout_acabamento_ids, LayoutAcabamento.where(active: true), :id, :name, :item_wrapper_class => 'checkbox_container' %>
+        <div class="col-sm-6 acabamentos">
+            <%= f.collection_check_boxes :layout_acabamento_ids, LayoutAcabamento.where(active: true).order('name'), :id, :name, :item_wrapper_class => 'checkbox_container' %>
 
         </div>
     
@@ -68,6 +66,16 @@
             <%= f.input :observacao,:as => :text,  :label =>"Observações"%>
         </div>
 </div><!-- /.box-body -->
+</div>
+
+<div class="actions-bar row">
+        <div class="col-md-2 col-xs-6 pull-right">
+            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat" %>
+        </div>
+
+       <div class="col-md-2 col-xs-6 pull-right">
+            <%=link_to "Duplicar", clone_layout_path(params[:id]),  :class => "btn btn-block btn-default btn-flat",  data: { confirm: 'Deseja duplicar este layout?' } %>
+        </div>
 </div>
 
 <% end %>

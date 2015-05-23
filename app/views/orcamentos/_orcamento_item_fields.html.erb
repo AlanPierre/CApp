@@ -1,8 +1,9 @@
 <div class="nested-fields item">
-<div class="col-md-12">    
+<div class="col-md-12"> 
+
 <div class="pull-right">
-<%= link_to_remove_association f, :onclick => "SomarItens()"  do%>
-    <span >×</span>
+<%= link_to_remove_association f, onclick: 'RemoverSomarItens()'  do%>
+    <i class="fa fa-minus"></i>
 <% end %>
 </div>
 </div>
@@ -33,7 +34,11 @@
     <label class="text optional control-label">Descrição</label><%= link_to ' (Usar modelo) ', "#", :onclick => "OpenModal();return false;" %>
     <%= f.text_area :descricao, :class => 'text optional form-control descricao_item' %> 
     </div>
-    
+    <div class="col-sm-12">
+        <div class="pull-left">
+        <%= f.input :active, :label => 'Este item deve ser somado ao total do orçamento.' %>
+    </div>
+        </div>
 
     <div class="modal fade descricao-items">
   <div class="modal-dialog">
@@ -65,5 +70,5 @@
 </div><!-- /.modal -->
   
 </div>
-
+ 
 

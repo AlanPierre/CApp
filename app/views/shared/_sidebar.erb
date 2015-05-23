@@ -1,38 +1,22 @@
 <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar" style="height: auto;">
-          <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
-           <li>
-               <%= link_to clientes_path do %>
-               <i class="fa fa-fw fa-user"></i> Clientes
-               <%end%>
+    <section class="sidebar" style="height: auto;">
+    <ul class="sidebar-menu">
+        <li>
+            <%= nav_link clientes_path,"<i class='fa fa-fw fa-user'></i> Clientes"  %>
             </li>
-                <li>
-                    <%= link_to orcamentos_path  do%>
-                    <i class="fa fa-fw fa-tag"></i> Orçamentos
-               <%end%>
-              </li>
-              <li>
-                  <%= link_to pedido_vendas_path  do%>
-                    <i class="fa fa-fw fa-shopping-cart"></i> Pedidos de Vendas
-               <%end%>
-              </li>
-                <li>
-                  <%= link_to layouts_path  do%>
-                    <i class="fa fa-fw fa-pencil"></i> Layouts
-               <%end%>
-              </li>
-                <li>
-                  <%= link_to ordem_producaos_path  do%>
-                    <i class="fa fa-fw fa-file-text"></i> Ordens de Produção
-               <%end%>
-              </li>
-        
-        
+        <li>
+            <%= nav_link orcamentos_path, "<i class='fa fa-fw fa-tag'></i> Orçamentos"%>
+        </li>
+        <li>      
+            <%= nav_link pedido_vendas_path, "<i class='fa fa-fw fa-shopping-cart'></i> Pedidos de Vendas" %>
+        </li>
+        <li>
+            <%= nav_link layouts_path, "<i class='fa fa-fw fa-pencil'></i> Layouts" %>
+         </li>
+        <li>
+            <%= nav_link ordem_producaos_path, "<i class='fa fa-fw fa-file-text'></i> Ordens de Produção" %>
+        </li>
+    </ul>
+    </section>
+</aside>
 
-        
-          </ul>
-        </section>
-        <!-- /.sidebar -->
-      </aside>

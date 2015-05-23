@@ -1,27 +1,37 @@
-<ul class="timeline">
-
-    <% @activities.each do |activity| %>  
-    <li>    
-        <%if activity.trackable_type == 'Cliente'%>
-            <i class="fa fa-fw fa-user bg-green"></i>
-        <%elsif  activity.trackable_type == 'PedidoVenda'%>
-            <i class="fa fa-fw fa-shopping-cart bg-green"></i>
-        <%elsif  activity.trackable_type == 'Orcamento'%>
-            <i class="fa fa-fw fa-tag bg-green"></i>
-        <%end%>
-        <div class="timeline-item">
-            <span class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words (activity.created_at)%></span>
-            <h3 class="timeline-header"><a href="#"><%= activity.owner.name if activity.owner %> </a></h3>
-            <div class="timeline-body">
-                       <%= render_activity activity %>
-            </div>
-
-        </div>
+<section class="content-header">
+<h1>Feed</h1>
+</section>
+<section class="content">
+  <ul class="timeline">
+<% @activities_days.each do |day, activitys| %>  
+    <li class="time-label">
+        <span class="bg-green">
+            <%= day.strftime("%d %b. %Y") %>
+        </span>
     </li>
+        <% for activity in activitys %>
+            <li>    
+                <%if activity.trackable_type == 'Cliente'%>
+                    <i class="fa fa-fw fa-user bg-green"></i>
+                <%elsif  activity.trackable_type == 'PedidoVenda'%>
+                    <i class="fa fa-fw fa-shopping-cart bg-green"></i>
+                <%elsif  activity.trackable_type == 'Orcamento'%>
+                    <i class="fa fa-fw fa-tag bg-green"></i>
+                <%end%>
+                <div class="timeline-item">
+                    <span class="time"><i class="fa fa-clock-o"></i> <%= time_ago_in_words (activity.created_at)%></span>
+                    <h3 class="timeline-header"><a href="#"><%= activity.owner.name if activity.owner %> </a></h3>
+                    <div class="timeline-body">
+                        <%= render_activity activity %>
+                    </div>
+                </div>
+            </li>
+        <% end %>
     <% end %> 
-
-
 </ul>
+</section>
+
+
 
 
 

@@ -2,13 +2,13 @@
 <div class="col-md-12">    
 <div class="pull-right">
 <%= link_to_remove_association f  do%>
-    <span >×</span>
+    <i class="fa fa-minus"></i>
 <% end %>
 </div>
 </div>
 
         <div class="col-sm-3">
-            <%= f.input :name, :label => "Título", input_html: {id: "name"}%>
+            <%= f.input :name, :label => "Título",:placeholder => 'Ex. Entrega, Fatura' , input_html: {id: "name"}%>
         </div>
         <div style="clear:both;"></div>
         
@@ -32,7 +32,7 @@
          <%= f.input :estado_id, collection: Estado.all,  label_method: :uf,  input_html: { id: var, class: 'estado', onchange: "DynamicSelect()" }%>  
         </div>
         <div class="col-sm-3">
-            <%= f.input :cidade_id, collection: Cidade.where("estado_id = ?", f.object.estado_id),input_html: { 
+            <%= f.input :cidade_id, collection: Cidade.where('estado_id =?', f.object.estado_id) || [],input_html: { 
                         class: 'cidade',
                          "data-option-dependent" => true,
                          "data-option-observed" => var,
@@ -42,13 +42,13 @@
          </div>
 
         <div class="col-sm-3">
-            <%= f.input :forma_entrega_id,:collection => FormaEntrega.all,:label_method => :name,:value_method => :id,:label => "Forma de Entrega" ,:include_blank => false %>     
+            <%= f.input :forma_entrega_id,:collection => FormaEntrega.all,:label_method => :name,:value_method => :id,:label => "Forma de Entrega" ,:include_blank => true %>     
         </div>
         <div class="col-sm-3">
             <%= f.label :rota %>
             <%= f.select :rota, Date::DAYNAMES.zip((0..6).to_a),  { :include_blank=>true }, { :class => 'string optional form-control' } %>
         </div>
         <div class="col-sm-6">
-            <%= f.input :observacao, :label => 'Observações' %>
+            <%= f.input :observacao, :label => 'Observações',:placeholder => 'Ex. A/C, Referencia' %>
         </div>
 </div>

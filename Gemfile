@@ -15,6 +15,8 @@ gem 'cocoon'
 gem 'adminlte-rails'
 gem 'public_activity'
 gem 'will_paginate'
+gem 'ancestry'
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -30,8 +32,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'pg', :group => :production
 gem 'mysql2' , :group => :development
 gem 'rails_12factor', group: :production
- gem 'passenger', group: :production
-
+gem 'passenger', group: :production
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

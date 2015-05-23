@@ -1,36 +1,30 @@
     <%= simple_form_for(@orcamento) do |f| %>
-
+  <%= render "shared/messages", object: f.object %>
 <div class="box box-success">
 <div class="box-header">
         <div class="col-md-2 pull-left">
             <h3 class="no-margin box-title">Código:<%= f.object.id %></h3>
 </div>
         
-        <div class="col-md-2 col-xs-6 pull-right">
-            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat", :onclick => 'SubmitAndRemoveMask()' %>
-        </div>
-        <%if f.object.id.present? %>
-        <div class="col-md-2 col-xs-6 pull-right">
-            <%=link_to "Gerar venda",{:controller => "default", :action => "gerar_venda", :orcamento_id => @orcamento.id }, data: { confirm: 'Deseja gerar um pedido de venda?' }, :class => "btn btn-block btn-default btn-flat"  %>
-        </div>
-    <div class="col-md-2 col-xs-6 pull-right">
-            <%=link_to "Imprimir",{:controller => "default", :action => "gerar_venda", :orcamento_id => @orcamento.id }, data: { confirm: 'Deseja gerar um pedido de venda?' }, :class => "btn btn-block btn-default btn-flat"  %>
-        </div>
-     <%end%>
 </div>
 <div class="box-body">
         <div class="col-sm-6">
-            <%= f.input :cliente_id,:collection =>  Cliente.where(cliente_status_id: 1),:label_method => :nome_fantasia,:value_method => :id,:label => "Cliente" ,:include_blank => true %>           
+            <%= f.input :cliente_id,:collection =>  Cliente.where(cliente_status_id: 1),:label_method => :nome_fantasia,:value_method => :id,:label => "Cliente" ,:include_blank => true,  :required => true, input_html: {:onchange => 'DynamicSelectEnderecoCliente()' } %>         
         </div>
         <div class="col-sm-3">
-             <%=f.input :data_solicitacao, :as => :date_time, :label =>"Solicitado em", input_html: { }%>
-
+             <%=f.input :data_solicitacao,  :required => true, :as => :date_time, :label =>"Solicitado em", input_html: { }%>
         </div>
     <div class="col-sm-3">
              <%=f.input :data_aprovacao, :as => :date_time, :label =>"Aprovado em" %>
         </div>
+        <div class="col-sm-12">
+            <div class="form-group text optional endereco">
+                <label class="text optional control-label">Endereço</label><%= link_to ' (Alterar endereço) ', "#",  :onclick => "OpenModalEnderecoCliente();return false;" %> 
+                <%= text_area_tag 'endereco', nil, class: 'text optional form-control endereco_cliente', disabled: true %>
+            </div>
+        </div>
         <div class="col-sm-3">  
-        <%= f.input :user_id,:collection =>  User.where(departamento_id: 1),:label_method => :name,:value_method => :id,:label => "Vendedor" ,:include_blank => true %>
+        <%= f.input :user_id,:collection =>  User.where(departamento_id: 1),:label_method => :name,:value_method => :id,:label => "Vendedor" ,:include_blank => true, :required => true %>
         </div>
         <div class="col-sm-3">
             <%=f.association :orcamento_status, collection: OrcamentoStatus.where(active: true), :label => "Status",:include_blank => false %>
@@ -39,15 +33,11 @@
             <%= f.input :referencia, :label =>"Referência"%>
         </div>
          <div class="col-sm-12">
-         <label class="text optional control-label">Condições Gerais</label><%= link_to ' (Inserir padrão) ', "#", :onclick => "InserirOrcamentoCondicoesGerais();return false;" %>
-             
+         <label class="text optional control-label">Condições Gerais</label><%= link_to ' (Inserir padrão) ', "#", :onclick => "InserirOrcamentoCondicoesGerais();return false;" %> 
             <%= f.input :condicoes,:as => :text,  :label => false%>
         </div>
 </div><!-- /.box-body -->
 </div>
-
-    
-<div class="col-sm-12">
 <div class="box box-success">
         <div class="box-header">
           <h3 class="box-title">Produtos</h3>
@@ -58,7 +48,7 @@
             <%= render "orcamento_item_fields", :f => builder %>
             <% end %>
                 <div class="col-sm-6">
-                    <%= link_to_add_association 'Adicionar Produto', f, :orcamento_items, :class => "btn  btn-default btn-flat", :style => 'margin-top: 20px'   %>
+                    <%= link_to_add_association '+', f, :orcamento_items, :class => "btn  btn-default btn-flat", :style => 'margin-top: 20px'   %>
                 </div>
                     <div class="col-sm-2 pull-right">
                     <%= f.input :calculate_totals, as: :currency, :label => "Total", :disabled => true,  input_html: { class: 'total', id: 'total' } %> 
@@ -66,7 +56,58 @@
         </fieldset>
         </div><!-- /.box-body -->
       </div>
-</div> 
 
+    <div id="endereco-cliente" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">Endereço do cliente</h4>
+      </div>
+      <div class="modal-body">
+          <div class="col-sm-6">     
+        <%= f.input :cliente_endereco_id,:collection =>  ClienteEndereco.where('cliente_id', f.object.cliente_id) || [] ,:label_method => :name,:value_method => :id,:label => "Endereços cadastrados" ,:include_blank => true, input_html: { :onchange => 'DynamicSelectEnderecoCompleto()',
+                        class: 'endereco_id',
+                         "data-option-dependent" => true,
+                         "data-option-observed" => 'orcamento_cliente_id',
+                         "data-option-url" => "/cliente/:cliente_id:/enderecos.json",
+                         "data-option-key-method" => :id,
+                         "data-option-value-method" => :name } %>
+              
+
+              
+          </div>
+          <div class="col-sm-12 ">
+             <div class="form-group text optional endereco">
+                <%=text_area(:endereco, :text, cols: 1, rows: 3, class: 'text optional form-control endereco_cliente', :disabled => true)%>
+            </div>
+
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default  btn-flat pull-left" onclick="CloseModal()">Cancelar</button>
+        <button type="button" class="btn btn-success btn-flat" onclick="CloseModal()">Inserir</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="actions-bar row">
+        <div class="col-md-2 col-xs-6 pull-right">
+            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat", :onclick => 'SubmitAndRemoveMask()' %>
+        </div>
+        <%if f.object.id.present? %>
+        <div class="col-md-2 col-xs-6 pull-right">
+            <%=link_to "Gerar venda",{:controller => "default", :action => "gerar_venda", :orcamento_id => @orcamento.id }, data: { confirm: 'Deseja gerar um pedido de venda?' }, :class => "btn btn-block btn-default btn-flat"  %>
+        </div>
+    <div class="col-md-2 col-xs-6 pull-right">
+            <%=link_to "Imprimir", [@orcamento, :print],  :class => "btn btn-block btn-default btn-flat", :target => '_blank'%>
+        </div>
+       <div class="col-md-2 col-xs-6 pull-right">
+            <%=link_to "Duplicar", clone_orcamento_path(params[:id]),  :class => "btn btn-block btn-default btn-flat",  data: { confirm: 'Deseja duplicar este orçamento?' } %>
+        </div>
+     <%end%>
+</div>
 <% end %>
   

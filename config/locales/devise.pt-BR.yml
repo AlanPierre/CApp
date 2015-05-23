@@ -54,6 +54,8 @@ pt-BR:
     sessions:
       new:
         sign_in: Login
+    user:
+        signed_in: Seja bem-vindo!
     shared:
       links:
         back: Voltar

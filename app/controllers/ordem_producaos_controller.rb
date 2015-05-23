@@ -2,6 +2,15 @@ class OrdemProducaosController < InheritedResources::Base
     load_and_authorize_resource  
     before_filter :authenticate_user!
         
+       def index
+        @status = OrdemProducaoStatus.all  
+         @vendedores = User.where(departamento_id: 1)
+         @ordem_producaos  = OrdemProducao.includes(:user).filter(params.slice(:status,  :cliente_name, :vendedor, :search_with, :solicitacao_start_date, :solicitacao_end_date)).order("ID").paginate(:per_page => 50, :page => params[:page])
+
+     end 
+    
+    
+        
     def create  
         create! { collection_url }
         flash[:notice] = 'Ordem de produção salva com sucesso!' 

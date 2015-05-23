@@ -1,12 +1,11 @@
-<%= render 'sidebar', cache: true%> 
-
-<div class="col-sm-9">
-<div class="box box-success">
-<div class="box-header">
-  <h3 class="box-title">Orçamentos</h3>
-</div>
-        <div id="orcamentos">
-        <%= render 'orcamentos', cache: true%>
+<section class="content-header">
+<h1>Orçamentos</h1>
+</section>
+<section class="content">
+    <%= render 'sidebar', cache: true%> 
+    <div class="col-sm-9">
+        <div id="orcamentos" class="filter_row">
+            <%= render 'orcamentos', cache: true%>
         </div>
-</div>
-</div>
+    </div>
+</section>

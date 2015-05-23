@@ -1,36 +1,45 @@
+<% if @orcamentos.size == 0 %>
+   <i class="fa fa-fw fa-meh-o" style="font-size: 100px; color: #ccc"></i>
 
-<div class="box-body">
-<table  class="table table-bordered table-hover">
-  <thead>
-    <tr>
-        <th>Cód</th>
-        <th>Cliente</th>
-      <th>Solicitado em</th>
-        <th>Aprovado em</th>
-        <th>Vendedor</th>
-        <th>Total</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-
-  <tbody>
+<% else %>
     <% @orcamentos.each do |orcamento| %>
-      <tr data-link="<%= edit_orcamento_path(orcamento) %>">
-        <td><%= orcamento.id %></td>
-        <td><%= orcamento.cliente.nome_fantasia %></td>
-        <td><%= l(orcamento.data_solicitacao) if orcamento.data_solicitacao %></td>
-          <td><%= l(orcamento.data_aprovacao) if orcamento.data_aprovacao %></td>
-        <td><%= orcamento.user.name if orcamento.user %></td>
-          <td><%= number_to_currency(orcamento.calculate_totals) %></td>
-          <td>
-            <%if orcamento.orcamento_status_id == 2 %>
-            <span class="label label-danger"><%= orcamento.orcamento_status.name if orcamento.orcamento_status %></span>
-        <%else%>
-            <span class="label label-success"><%= orcamento.orcamento_status.name if orcamento.orcamento_status %></span>
-        <%end%>
-          </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-</div><!-- /.box-body -->
+        <div class="box box-success">
+            <div class="box-header">
+                <h3 class="box-title"><small>Código:</small> <%= orcamento.id %> </h3>
+                 <%if orcamento.orcamento_status_id == 2 %>
+                <span class="pull-right label label-danger"><%= orcamento.orcamento_status.name if orcamento.orcamento_status %></span>
+            <%else%>
+                <span class="pull-right label label-success"><%= orcamento.orcamento_status.name if orcamento.orcamento_status %></span>
+            <%end%>
+
+            </div>
+            <div class="box-body">
+                <div class="col-sm-8">
+
+                   <small>Cliente:</small> <%= orcamento.cliente.nome_fantasia %> <br/>
+                  <small>Solicitado em:</small> <%= l(orcamento.data_solicitacao) if orcamento.data_solicitacao %>  - 
+                    <small>Aprovado em:</small> <%= l(orcamento.data_aprovacao) if orcamento.data_aprovacao %> <br/>
+                  <small>Vendedor:</small> <%= orcamento.user.name if orcamento.user %>  <br/>
+                    <small>Produtos:
+                <%orcamento.orcamento_items.each do |item| %> 
+                            <%= item.produto.name if item.produto %> -
+                            <%= item.material.name if item.material %>,
+                    <%end%>
+                 </small>
+              </div>
+                <div class="col-sm-2 ">
+              <%= number_to_currency(orcamento.calculate_totals)  %>
+                
+                    </div>
+                <div class="col-sm-2 no-padding ">
+                      <%=link_to "Editar",  edit_orcamento_path(orcamento),  :class => "btn btn-block btn-success btn-flat"%>
+                
+                    </div>
+
+
+
+
+            </div><!-- /.box-body -->
+        </div>
+    <%end%>
+<%end%>

@@ -1,21 +1,13 @@
 <%= simple_form_for(@pedido_venda) do |f| %>
+  <%= render "shared/messages", object: f.object %>
+
 <div class="box box-success">
 <div class="box-header">
         <div class="col-md-2 pull-left">
             <h3 class="no-margin box-title">Código: <%= f.object.id %></h3>
 </div>
         
-        <div class="col-md-2 col-xs-6 pull-right">
-            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat", :onclick => 'SubmitAndRemoveMask()' %>
-        </div>
-        <%if f.object.id.present? %>
-        <div class="col-md-2 col-xs-6 pull-right">
-            <%=link_to "Gerar OP",{:controller => "default", :action => "gerar_venda", :orcamento_id => @pedido_venda.id }, data: { confirm: 'Deseja gerar um pedido de venda?' }, :class => "btn btn-block btn-default btn-flat"  %>
-        </div>
-    <div class="col-md-2 col-xs-6 pull-right">
-            <%=link_to "Imprimir", [@pedido_venda, :print],  :class => "btn btn-block btn-default btn-flat", :target => '_blank'%>
-        </div>
-     <%end%>
+        
 </div>
 <div class="box-body">
         <div class="col-sm-6">
@@ -33,10 +25,10 @@
         <div class="col-sm-3">
             <%=f.association :pedido_venda_status, collection: PedidoVendaStatus.where(active: true), :label => "Status",:include_blank => false %>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2"  style="padding-top: 15px;">
             <%= f.input :recibo, :label =>"Emitir recibo" %>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2"  style="padding-top: 15px;">
             <%= f.input :nota_fiscal, :label =>"Emitir nota fiscal"%>
         </div>
          <div class="col-sm-12">
@@ -55,17 +47,29 @@
             <%= render "pedido_venda_item_fields", :f => builder %>
             <% end %>
                 <div class="col-sm-6">
-                    <%= link_to_add_association 'Adicionar Produto', f, :pedido_venda_items, :class => "btn  btn-default btn-flat"   %>
+                    <%= link_to_add_association '+', f, :pedido_venda_items, :class => "btn  btn-default btn-flat"   %>
                 </div>
                 <div class="col-sm-2 pull-right">
-                        <span id="total"> </span>
-                </div>  
+                    <%= f.input :calculate_totals, as: :currency, :label => "Total", :disabled => true,  input_html: { class: 'total', id: 'total' } %> 
+                    </div>
         </fieldset>
         </div><!-- /.box-body -->
       </div>
 
-<div class="col-sm-2">
-        <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat" %>
+
+<div class="actions-bar row">
+    <div class="col-md-2 col-xs-6 pull-right">
+            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat", :onclick => 'SubmitAndRemoveMask()' %>
+        </div>
+        <%if f.object.id.present? %>
+        <div class="col-md-2 col-xs-6 pull-right">
+            <%=link_to "Gerar OP",{:controller => "default", :action => "gerar_op", :pedido_venda_id => @pedido_venda.id }, data: { confirm: 'Deseja gerar uma OP?' }, :class => "btn btn-block btn-default btn-flat"  %>
+        </div>
+    <div class="col-md-2 col-xs-6 pull-right">
+            <%=link_to "Imprimir", [@pedido_venda, :print],  :class => "btn btn-block btn-default btn-flat", :target => '_blank'%>
+        </div>
+     <%end%>
 </div>
+
 <% end %>
   

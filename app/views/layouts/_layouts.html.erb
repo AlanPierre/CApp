@@ -1,0 +1,42 @@
+<% if @layouts.size == 0 %>
+   <i class="fa fa-fw fa-meh-o" style="font-size: 100px; color: #ccc"></i>
+
+<% else %>
+    <% @layouts.each do |layout| %>
+        <div class="box box-success">
+            <div class="box-header">
+                <h3 class="box-title"><small>Layout:</small> <%= layout.name %> </h3>
+                 <%if layout.pedido_layout_status_id == 2 %>
+                <span class="pull-right label label-danger"><%= layout.pedido_layout_status.name if layout.pedido_layout_status %></span>
+            <%else%>
+                <span class="pull-right label label-success"><%= layout.pedido_layout_status.name if layout.pedido_layout_status %></span>
+            <%end%>
+
+            </div>
+            <div class="box-body">
+                <div class="col-sm-8">
+
+                   <small>Cliente:</small> <%= layout.cliente.nome_fantasia %> <br/>
+                  <small>Solicitado em:</small> <%= l(layout.data_aprovacao) if layout.data_aprovacao %>  <br/>
+                 <small>
+                     Produto: <%= layout.produto.name %> - <%= layout.material.name %>
+                </small>
+
+              </div>
+                <div class="col-sm-2 ">
+                
+                    </div>
+                <div class="col-sm-2 no-padding ">
+                      <%=link_to "Editar",  edit_layout_path(layout),  :class => "btn btn-block btn-success btn-flat"%>
+                
+                    </div>
+
+
+
+
+            </div><!-- /.box-body -->
+        </div>
+    <%end%>
+<%end%>
+
+

@@ -8,52 +8,44 @@ def full_title(page_title)
     "#{base_title} | #{page_title}"
   end
  end
-    
-    def sortable(column, title = nil)
-  title ||= column.titleize
-  css_class = column == sort_column ? "sorting_#{sort_direction}" : nil
-  direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
-  link_to title, {:sort => column, :direction => direction}, {:class => css_class}
-end
-    
-def is_active?(page_name)
-  "active" if params[:action] == page_name
-end
-    
 
-  # Shortcut for outputing proper ownership of objects,
-  # depending on who is looking
-  def whose?(user, object)
-    case object
-      when Post
-        owner = object.author
-      when Comment
-        owner = object.user
-      else
-        owner = nil
-    end
-    if user and owner
-      if user.id == owner.id
-        "his"
-      else
-        "#{owner.nickname}'s"
-      end
-    else
-      ""
-    end
+    
+ def nav_link( link_path, link_text)
+  class_name = current_page?(link_path) ? 'active' : ''
+  content_tag(:li, :class => class_name) do
+    link_to link_path do
+        link_text.html_safe
+        end
   end
+end
 
-  # Check if object still exists in the database and display a link to it,
-  # otherwise display a proper message about it.
-  # This is used in activities that can refer to
-  # objects which no longer exist, like removed posts.
-  def link_to_trackable(object, object_type)
-    if object
-      link_to object_type.downcase, object
-    else
-      "a #{object_type.downcase} which does not exist anymore"
-    end
+def whose?(user, object)
+case object
+  when Post
+    owner = object.author
+  when Comment
+    owner = object.user
+  else
+    owner = nil
+end
+if user and owner
+  if user.id == owner.id
+    "his"
+  else
+    "#{owner.nickname}'s"
   end
+else
+  ""
+end
+end
+
+def link_to_trackable(object, object_type)
+if object
+  link_to object_type.downcase, object
+else
+  "a #{object_type.downcase} which does not exist anymore"
+end
+end
     
 def javascript(*files)
   content_for(:head) { javascript_include_tag(*files) }
@@ -62,5 +54,7 @@ end
 def stylesheet(*files)
   content_for(:head) { stylesheet_link_tag(*files) }
 end
+    
+
     
 end

@@ -1,8 +1,9 @@
 class Cliente < ActiveRecord::Base
+
+        attr_accessible :nome_fantasia, :razao_social, :cnpj, :inscricao_municipal, :inscricao_estadual, :cliente_faturamento_id, :cliente_status_id, :user_id, :observacao, :notificacao, :cliente_contatos_attributes, :cliente_enderecos_attributes, :cliente_estoque_minimos_attributes
+
       include Filterable
 
-    attr_accessible :nome_fantasia, :razao_social, :cnpj, :inscricao_municipal, :inscricao_estadual, :cliente_faturamento_id, :cliente_status_id, :user_id, :observacao, :notificacao, :cliente_contatos_attributes, :cliente_enderecos_attributes, :cliente_estoque_minimos_attributes
-    
     scope :status, -> (status) {
         statuses = status.split(',')
         where cliente_status_id: statuses }
@@ -17,6 +18,8 @@ class Cliente < ActiveRecord::Base
     
     
     scope :search_with, -> (search) {where('nome_fantasia LIKE ?', "%#{search}%")  }
+
+    validates_presence_of :nome_fantasia, :cliente_faturamento_id, :cliente_status_id, :user_id
 
     
     belongs_to :user
@@ -33,6 +36,7 @@ class Cliente < ActiveRecord::Base
     accepts_nested_attributes_for :cliente_contatos, :reject_if => :all_blank, :allow_destroy => true
     accepts_nested_attributes_for :cliente_enderecos, :reject_if => :all_blank, :allow_destroy => true
     accepts_nested_attributes_for :cliente_estoque_minimos, :reject_if => :all_blank, :allow_destroy => true
+
     
     include PublicActivity::Model
     tracked :owner => proc {|controller, model| controller.current_user}

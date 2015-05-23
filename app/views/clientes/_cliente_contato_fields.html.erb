@@ -2,7 +2,7 @@
 <div class="col-md-12">    
 <div class="pull-right">
 <%= link_to_remove_association f  do%>
-    <span >×</span>
+    <i class="fa fa-minus"></i>
 <% end %>
 </div>
 </div>
@@ -10,13 +10,13 @@
             <%= f.input :nome %>
         </div>
         <div class="col-sm-3">
-            <%= f.input :email %>
+            <%= f.input :email, input_html:{:type => 'email'}%>
         </div>
         <div class="col-sm-3">
-            <%= f.input :telefone %>
+            <%= f.input :telefone, input_html:{:type => 'tel'} %>
         </div>
         <div class="col-sm-3">
-            <%= f.input :observacao, :label => 'Observação' %>
+            <%= f.input :observacao, :label => 'Identificação', :placeholder => 'Ex. Cargo, setor' %>
         </div>
 
 </div>

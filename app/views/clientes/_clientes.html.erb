@@ -1,35 +1,38 @@
-<div class="box-body">
-    <div class="table-responsive mailbox-messages">
-         <table  class="table table-bordered table-hover">
-<thead>
-<tr> 
-<th>Nome Fantasia</th>
-<th>Tipo de Faturamento</th>
-<th>Status</th>
-<th>Vendedor</th>
-</tr>
-</thead>
-<tbody>
-<% @clientes.each do |cliente| %>
-<tr data-link="<%=edit_cliente_path(cliente) %>">
-<td><%= cliente.nome_fantasia %></td>
-<td><%= cliente.cliente_faturamento.name if cliente.cliente_faturamento%></td>  
-<td>
-<%if cliente.cliente_status_id == 2 %>
-<span class="label label-danger"><%= cliente.cliente_status.name if cliente.cliente_status %></span>
-<%else%>
-<span class="label label-success"><%= cliente.cliente_status.name if cliente.cliente_status %></span>
-<%end%>
-</td>
-<td><%= cliente.user.name if cliente.user %></td>
-</tr>
-<% end %>
-</tbody>
-</table><!-- /.table -->   
-                    
-    </div>  
-</div>
+<% if @clientes.size == 0 %>
+   <i class="fa fa-fw fa-meh-o" style="font-size: 100px; color: #ccc"></i>
 
-<div class="box-footer clearfix">
+<% else %>
+    <% @clientes.each do |cliente| %>
+        <div class="box box-success">
+            <div class="box-header">
+                <h3 class="box-title"> <%= cliente.nome_fantasia %></h3>
+                <%if cliente.cliente_status_id == 2 %>
+                <span class="label pull-right label-danger"><%= cliente.cliente_status.name if cliente.cliente_status %></span>
+                <%else%>
+                <span class="label  pull-right label-success"><%= cliente.cliente_status.name if cliente.cliente_status %></span>
+                <%end%>
+
+            </div>
+            <div class="box-body">
+                <div class="col-sm-8">
+
+                  <small>Cadastrado em:</small> <%= l(cliente.created_at.to_s) if cliente.created_at %>  <br/> 
+                  <small>Vendedor:</small> <%= cliente.user.name if cliente.user %>  <br/>
+               </div>
+                <div class="col-sm-2 ">
+            
+                    </div>
+                <div class="col-sm-2 no-padding ">
+                      <%=link_to "Editar",  edit_cliente_path(cliente),  :class => "btn btn-block btn-success btn-flat"%>
+                
+                    </div>
+
+
+            </div><!-- /.box-body -->
+        </div>
+    <%end%>
+
+
     <%= will_paginate @clientes%>
-</div>
+<%end%>
+

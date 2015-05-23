@@ -1,1 +1,30 @@
-<%= f.input :quantidade, :label => "" %>
+<div class="modal fade"
+           id="estoque_minimo" tabindex="-1" role="estoque_minimo" 
+           aria-labelledby="myModalLabel"
+           aria-hidden="true" 
+           data-backdrop="static" 
+           data-keyboard="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" 
+                data-dismiss="modal" 
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">Estoque Mínimo</h3>
+      </div>
+      <div class="modal-body">
+          
+          <%= f.hidden_field  :produto_id, :value => '1' %>
+          <%= f.hidden_field  :material_id, :value => '1' %>
+          <%= f.input :quantidade, :label => "Quantidade" %>
+      </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default  btn-flat pull-left" onclick="CloseModal()">Cancelar</button>
+        <button type="button" class="btn btn-success btn-flat" onclick="InserirDescricao()">Inserir</button>
+      </div>
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+

@@ -1,44 +1,101 @@
-<div class="col-md-3">
-    <div class="col-md-12 margin-bottom">
+<div class="col-md-3 sidebar-filter">
+    <div class="margin-bottom">
 <%= link_to 'Adicionar', new_pedido_venda_path, :class => 'btn btn-block btn-success btn-flat margin-bottom' %>
   </div>
+ 
+        
+  <div class="box box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">Código</h3>
+    </div>
+    <div class="box-body">
+        <div class="col-md-12 margin-bottom">    
+                        
+    <%= form_tag pedido_vendas_path, :id => "search", :method => 'get' do %>   
+    <%= text_field_tag :search_with, params[:search_with], type: :number, :class => 'form-control  input-sm', :placeholder => "Buscar por código" %> 
+      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+<% end %>  
+            
+</div>
+    </div><!-- /.box-body -->
+  </div><!-- /. box -->
+  
+    
+    
+<%= form_tag pedido_vendas_path, :id => "filter_form", :class => "filter_form", :method => 'get' do %>   
+    
+  <div class="box box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">Cliente</h3>
+    </div>
+    <div class="box-body">
+        <div class="col-md-12 margin-bottom">    
+                        
+    <%= text_field_tag :cliente_name, params[:cliente_name], :class => 'form-control  input-sm', :placeholder => "Buscar por cliente" %> 
+      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+            
+</div>
+    </div><!-- /.box-body -->
+  </div><!-- /. box -->
+  
+    
+  <div class="box box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">Data de Solicitação</h3>
+    </div>
+    <div class="box-body">
+        <div class="col-md-12 margin-bottom">    
+                        
+             <div class="search_with_date">
+            <%= text_field_tag :solicitacao_start_date, params[:solicitacao_start_date],   :class => 'form-control  datepicker input-sm date_time', :placeholder =>'De'  %>  
+            <span>-</span>
+        <%= text_field_tag :solicitacao_end_date, params[:solicitacao_end_date],   :class => 'form-control datepicker  input-sm date_time',:placeholder =>'Até' %> 
+        </div>
+            
+</div>
+    </div><!-- /.box-body -->
+  </div><!-- /. box -->
     
 
-  <div class="col-md-12">    
+    
   <div class="box box-solid">
     <div class="box-header with-border">
       <h3 class="box-title">Status</h3>
     </div>
-    <div class="box-body no-padding">
-      <ul class="nav nav-pills nav-stacked">
-          <li><%= link_to 'Todos', pedido_vendas_path %></li>
-
-            <% @pedido_venda_statuses.each do |status| %>
-            <li><%= link_to  status.name, :status =>  status.id %></li>
-            <%end%>
+    <div class="box-body  sidebar-scroll">
+        <ul class="nav nav-pills nav-stacked">
+            <% @status.each do |status| %>
+             <li>
+                <a href='#' onclick="SubmitFilter();return false;">              
+                    <%= check_box_tag "status[]", status.id %>
+                    <%= status.name %>
+                 </a>
+            </li>
+            <% end %>
 
       </ul>
+
     </div><!-- /.box-body -->
   </div><!-- /. box -->
-</div>
-    
-      <div class="col-md-12">                 
+      
   <div class="box box-solid">
     <div class="box-header with-border">
       <h3 class="box-title">Vendedores</h3>
     </div>
-    <div class="box-body no-padding">
-      <ul class="nav nav-pills nav-stacked">
-          <li><%= link_to 'Todos', pedido_vendas_path %></li>
-
-        <% @vendedores.each do |vendedor| %>
-           <li>
-               <%= link_to  vendedor.name, :vendedor =>  vendedor.id %>
-          </li>
-        <%end%>
-
+    <div class="box-body sidebar-scroll">
+      <form class="filter_form", method="get">
+        <ul class="nav nav-pills nav-stacked">
+            <% @vendedores.each do |vendedor| %>
+             <li>
+                <a href='#' onclick="SubmitFilter();return false;">
+                    <%= check_box_tag("vendedor[]", vendedor.id) %>
+                <%= vendedor.name %> </a>
+            </li>
+            <% end %>
       </ul>
     </div><!-- /.box-body -->
   </div><!-- /. box -->
-</div>
-</div>
+          
+    
+<% end %>  
+</div> 

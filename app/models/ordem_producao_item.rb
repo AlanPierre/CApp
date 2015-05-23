@@ -23,9 +23,9 @@ class OrdemProducaoItem < ActiveRecord::Base
         ordem_producao = OrdemProducao.find(self.ordem_producao_id)
         cliente = ordem_producao.cliente
         saldo = 0   
-        if cliente.cliente_faturamento_id == 1 && ordem_producao.tipo == '1'
+        if cliente.cliente_faturamento_id == 1 && ordem_producao.tipo == 1
                 if OrdemProducaoItem.exists?(:id => self.id)
-                   item = OrdemProducaoItem.find(self.id) if present?
+                   item = OrdemProducaoItem.find(self.id)
                     saldo = item.quantidade.to_f
                 end        
             estoques = cliente.cliente_estoques

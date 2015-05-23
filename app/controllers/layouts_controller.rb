@@ -2,17 +2,33 @@ class LayoutsController < InheritedResources::Base
     load_and_authorize_resource  
     before_filter :authenticate_user!
     
+       def index
+        @status = PedidoLayoutStatus.all  
+         @layouts  = Layout.all.filter(params.slice(:status, :cliente_name,  :search_with, :solicitacao_start_date, :solicitacao_end_date,:aprovacao_start_date, :aprovacao_end_date)).order("ID").paginate(:per_page => 50, :page => params[:page])
+
+     end 
+    
+    
+    
     def create  
         create! { collection_url }
-        flash[:notice] = 'Layout salvo com sucesso!' if @layout.update_attributes(params[:layout])
+        flash[:notice] = 'Layout salvo com sucesso!'
     end
     
     def update  
         update! { edit_layout_path} 
-        flash[:notice] = 'Layout atualizado com sucesso!' if @layout.update_attributes(params[:layout])
+        flash[:notice] = 'Layout atualizado com sucesso!' 
     end
 
 
+        def clone
+        @layout_old = layout.find(params[:id])
+        @layout = layout.create(@layout_old.attributes.merge(:id => ''))
+        redirect_to edit_layout_path(@layout)
+        flash[:notice] = 'Layout duplicado!' 
+    end
+    
+    
   private
 
     def layout_params
