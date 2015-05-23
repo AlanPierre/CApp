@@ -1,5 +1,12 @@
 <% if @clientes.size == 0 %>
-   <i class="fa fa-fw fa-meh-o" style="font-size: 100px; color: #ccc"></i>
+   <div class="blank_slate_container">
+              <span class="blank_slate">
+                <span>Não há clientes para serem exibidos</span><br/>
+            <small><%=link_to "Clique aqui",  new_cliente_path%> e adicione um novo cliente.</small>
+              </span>
+            </div> 
+
+
 
 <% else %>
     <% @clientes.each do |cliente| %>
@@ -16,7 +23,7 @@
             <div class="box-body">
                 <div class="col-sm-8">
 
-                  <small>Cadastrado em:</small> <%= l(cliente.created_at.to_s) if cliente.created_at %>  <br/> 
+                  <small>Cadastrado em:</small> <%= l(cliente.created_at.to_date) %>  <br/> 
                   <small>Vendedor:</small> <%= cliente.user.name if cliente.user %>  <br/>
                </div>
                 <div class="col-sm-2 ">

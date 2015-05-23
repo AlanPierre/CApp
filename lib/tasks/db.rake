@@ -2,47 +2,39 @@ namespace :db do
    # poderia ser qualquer outra coisa que seguisse os padrões do :db
    namespace :seed do
       # qualquer coisa.
-      task :default => :environment do
-          
-        Role.delete_all
+      task :default => :environment do  
+
         Role.create(name: 'SuperAdmin')
         Role.create(name: 'Admin')
         Role.create(name: 'Intermediario')
         Role.create(name: 'Padrao')
 
-        User.delete_all
         User.create(email: 'alan-pierre@hotmail.com', password: '12345678', password_confirmation: '12345678', role_ids: '1')
 
-        FormaPagamento.delete_all
+        
         FormaPagamento.create(name: 'Boleto', active: true) 
         FormaPagamento.create(name: 'Depósito', active: true) 
         FormaPagamento.create(name: 'Dinheiro ou Cheque na Entrega', active: true) 
 
-        ClienteStatus.delete_all
         ClienteStatus.create(name: 'Ativo', active: true)
         ClienteStatus.create(name: 'Bloqueado', active: true)
         ClienteStatus.create(name: 'Inativo', active: true)
 
-        ClienteFaturamento.delete_all
         ClienteFaturamento.create(name: 'Pré-pago', active: true)
         ClienteFaturamento.create(name: 'Pós-pago', active: true)
-        
-        Departamento.delete_all
+
         Departamento.create(name: 'Comercial')
         Departamento.create(name: 'Produção')
         Departamento.create(name: 'Diretoria')
         Departamento.create(name: 'Financeiro')
         Departamento.create(name: 'Recepção')
 
-        PedidoVendaStatus.delete_all
         PedidoVendaStatus.create(name: 'Venda', active: true)
         PedidoVendaStatus.create(name: 'Cancelado', active: true)
         PedidoVendaStatus.create(name: 'Renovação de Contrato', active: true)
           
-        OrcamentoItemDescricao.delete_all
         OrcamentoItemDescricao.create(name: '[Padrão] Condições Gerais')
           
-        OrcamentoStatus.delete_all
         OrcamentoStatus.create(name: 'Fechado', active: true)
         OrcamentoStatus.create(name: 'Cancelado', active: true)
         OrcamentoStatus.create(name: 'Cotação', active: true)
@@ -51,7 +43,6 @@ namespace :db do
         OrcamentoStatus.create(name: 'Refeito', active: true)
         OrcamentoStatus.create(name: 'Prospecção', active: true)
         
-        OrdemProducaoStatus.delete_all
         OrdemProducaoStatus.create(name: 'Cancelada', active: true)
         OrdemProducaoStatus.create(name: 'A Liberar', active: true)
         OrdemProducaoStatus.create(name: 'A Produzir', active: true)    
@@ -59,12 +50,10 @@ namespace :db do
         OrdemProducaoStatus.create(name: 'Finalizada', active: true)        
         OrdemProducaoStatus.create(name: 'Entregue', active: true)
           
-        LayoutAcabamento.delete_all
         LayoutAcabamento.create(name: 'Furo', active: true)
         LayoutAcabamento.create(name: 'Cantos Redondos', active: true)
         LayoutAcabamento.create(name: 'Holografia', active: true)
         
-        PedidoLayoutStatus.delete_all
         PedidoLayoutStatus.create(name: 'A Produzir', active: true)
         PedidoLayoutStatus.create(name: 'Alteração', active: true)
         PedidoLayoutStatus.create(name: 'Aprovado', active: true)
@@ -75,7 +64,6 @@ namespace :db do
         PedidoLayoutStatus.create(name: 'Finalizado', active: true)    
         PedidoLayoutStatus.create(name: 'Finalização', active: true)
         
-        FormaEntrega.delete_all
         FormaEntrega.create(name: 'Retirada', active: true)
         FormaEntrega.create(name: 'Entrega', active: true)
         FormaEntrega.create(name: 'Transportadora', active: true)

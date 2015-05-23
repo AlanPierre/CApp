@@ -73,9 +73,11 @@
             <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat" %>
         </div>
 
+    <%if f.object.id.present? %>
        <div class="col-md-2 col-xs-6 pull-right">
             <%=link_to "Duplicar", clone_layout_path(params[:id]),  :class => "btn btn-block btn-default btn-flat",  data: { confirm: 'Deseja duplicar este layout?' } %>
         </div>
+    <% end %>
 </div>
 
 <% end %>

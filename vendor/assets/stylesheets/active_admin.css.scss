@@ -3059,7 +3059,8 @@ body.logged_out #login a
 #active_admin_content
 {
 	margin:0;
-	padding:30px
+	padding:30px;
+    padding-top: 10px;
 }
 
 #active_admin_content #main_content_wrapper
@@ -3266,7 +3267,7 @@ body.active_admin
 
 #header ul.tabs > li a
 {
-	padding:13px 20px;
+	padding:20px 20px;
 	margin:0;
     color: #b8c7ce;
 }
@@ -3545,7 +3546,7 @@ table.index_table tr.even td
 
 .sidebar_section.panel > h3
 {
-	background:#002744;
+	background:#404c50;
 	color:#fff;
 	border:none;
 	margin:0;

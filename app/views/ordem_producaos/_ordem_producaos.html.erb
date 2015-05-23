@@ -1,6 +1,10 @@
 <% if @ordem_producaos.size == 0 %>
-   <i class="fa fa-fw fa-meh-o" style="font-size: 100px; color: #ccc"></i>
-
+   <div class="blank_slate_container">
+              <span class="blank_slate">
+                <span>Não há ordens de produção para serem exibidas</span><br/>
+            <small><%=link_to "Clique aqui",  new_ordem_producao_path%> e crie uma nova ordem de produção.</small>
+              </span>
+            </div> 
 <% else %>
     <% @ordem_producaos.each do |ordem_producao| %>
         <div class="box box-success">

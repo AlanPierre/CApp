@@ -1,6 +1,10 @@
 <% if @orcamentos.size == 0 %>
-   <i class="fa fa-fw fa-meh-o" style="font-size: 100px; color: #ccc"></i>
-
+   <div class="blank_slate_container">
+              <span class="blank_slate">
+                <span>Não há orçamentos para serem exibidos</span><br/>
+            <small><%=link_to "Clique aqui",  new_orcamento_path%> e crie um novo orçamento.</small>
+              </span>
+            </div> 
 <% else %>
     <% @orcamentos.each do |orcamento| %>
         <div class="box box-success">

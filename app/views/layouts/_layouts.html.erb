@@ -1,6 +1,10 @@
 <% if @layouts.size == 0 %>
-   <i class="fa fa-fw fa-meh-o" style="font-size: 100px; color: #ccc"></i>
-
+   <div class="blank_slate_container">
+              <span class="blank_slate">
+                <span>Não há layouts para serem exibidos</span><br/>
+            <small><%=link_to "Clique aqui",  new_layout_path%> e crie um novo layout.</small>
+              </span>
+            </div> 
 <% else %>
     <% @layouts.each do |layout| %>
         <div class="box box-success">

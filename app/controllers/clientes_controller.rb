@@ -12,7 +12,7 @@ class ClientesController < InheritedResources::Base
 
     def create  
         create! { collection_url }
-        flash[:notice] = 'Cliente salvo com sucesso!' 
+        flash[:notice] = 'Cliente adicionado com sucesso!' 
     end
     
     def update  

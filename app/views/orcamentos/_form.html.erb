@@ -67,7 +67,7 @@
       </div>
       <div class="modal-body">
           <div class="col-sm-6">     
-        <%= f.input :cliente_endereco_id,:collection =>  ClienteEndereco.where('cliente_id', f.object.cliente_id) || [] ,:label_method => :name,:value_method => :id,:label => "Endereços cadastrados" ,:include_blank => true, input_html: { :onchange => 'DynamicSelectEnderecoCompleto()',
+        <%= f.input :cliente_endereco_id,:collection =>  ClienteEndereco.where('cliente_id =?', f.object.cliente_id) || [] ,:label_method => :name,:value_method => :id,:label => "Endereços cadastrados" ,:include_blank => true, input_html: { :onchange => 'DynamicSelectEnderecoCompleto()',
                         class: 'endereco_id',
                          "data-option-dependent" => true,
                          "data-option-observed" => 'orcamento_cliente_id',
