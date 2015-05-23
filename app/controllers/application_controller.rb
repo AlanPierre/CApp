@@ -14,6 +14,11 @@ rescue_from CanCan::AccessDenied do |exception|
     redirect_to access_denied_url
   end
 
+
+def authenticate_admin!
+ redirect_to new_user_session_path unless current_user.has_role? :SuperAdmin
+end
+
     
 end
 

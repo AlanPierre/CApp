@@ -11,6 +11,11 @@
           </a>
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+        <%if current_user.has_role? :SuperAdmin%>            
+        <li>
+            <a href="/admin" target="_blank"><i class="fa fa-fw fa-cog"  style="font-size: 18px;"></i></a>
+        </li>
+            <%end%>    
               <!-- Notifications: style can be found in dropdown.less -->
               <li class="dropdown  messages-menu">
                   <%= render 'shared/activity', cache: true%>              

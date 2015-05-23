@@ -27,9 +27,7 @@ Rails.application.routes.draw do
     
    resources :cliente_estoque_minimos
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-    
     devise_for :users
     devise_scope :user do
       authenticated :user do
@@ -40,6 +38,7 @@ Rails.application.routes.draw do
       end
     end
     
+    root 'devise/sessions#new'
     get 'activities/index'
     get "access_denied" => "default#access_denied"
     get "estado/:estado_id/cidades" => "default#update_cidades"

@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-    menu parent: "Usuários", label:"Usuários"
+    menu  label:"Usuários"
    
   permit_params :email,:name, :login, :password, :password_confirmation, :departamento_id, role_ids: []
   index do

@@ -3,12 +3,14 @@ namespace :db do
    namespace :seed do
       # qualquer coisa.
       task :default => :environment do  
-        AdminUser.create(email: 'alan-pierre@hotmail.com', password: '12345678', password_confirmation: '12345678')
 
         Role.create(name: 'SuperAdmin')
         Role.create(name: 'Admin')
         Role.create(name: 'Intermediario')
         Role.create(name: 'Padrao')
+
+        User.create(email: 'alan-pierre@hotmail.com', password: '12345678', password_confirmation: '12345678', role: 1)
+
         
         FormaPagamento.create(name: 'Boleto', active: true) 
         FormaPagamento.create(name: 'Depósito', active: true) 
