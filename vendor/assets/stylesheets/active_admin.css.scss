@@ -831,7 +831,6 @@ form fieldset > ol > li p.inline-errors
 {
 	color:#932419;
 	font-weight:700;
-	margin:.3em 0 0 20%
 }
 
 form fieldset > ol > li ul.errors
@@ -3806,4 +3805,14 @@ form fieldset > ol > li fieldset ol li select
 #title_bar h2
 {
 	font-weight:400
+}
+
+
+#header ul.tabs > li > a:hover > ul{
+      background: #404c50;
+}
+
+#header ul.tabs > li > ul > li > a{
+    padding: 10px;
+      background: #404c50;
 }

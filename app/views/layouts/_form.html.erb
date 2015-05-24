@@ -13,7 +13,7 @@
             <%= f.input :cliente_id,:collection =>  Cliente.where(cliente_status_id: 1),:label_method => :nome_fantasia,:value_method => :id,:label => "Cliente" ,:include_blank => true %>             
         </div>
         <div class="col-sm-6">
-            <%= f.input :name, :label =>"Layout"%>
+            <%= f.input :name, :label =>"Nome do layout", input_html: { :placeholder => "Ex. Cartão de afiliados"}%>
         </div>
     <div class="col-sm-3">
              <%=f.input :data_aprovacao, :as => :date_time, :label =>"Aprovado em", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
