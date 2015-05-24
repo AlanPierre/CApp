@@ -15,8 +15,14 @@
                 <h3 class="box-title"> <%= cliente.nome_fantasia %></h3>
                 <%if cliente.cliente_status_id == 2 %>
                 <span class="label pull-right label-danger"><%= cliente.cliente_status.name if cliente.cliente_status %></span>
-                <%else%>
-                <span class="label  pull-right label-success"><%= cliente.cliente_status.name if cliente.cliente_status %></span>
+               
+                 <%elsif cliente.cliente_status_id == 1%>
+                <span class="pull-right label label-success"><%= cliente.cliente_status.name if cliente.cliente_status %></span>
+                
+                 
+                 <%else%>
+                <span class="pull-right label label-primary"><%= cliente.cliente_status.name if cliente.cliente_status %></span>
+            
                 <%end%>
 
             </div>

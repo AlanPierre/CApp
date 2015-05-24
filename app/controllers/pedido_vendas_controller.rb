@@ -22,11 +22,15 @@ class PedidoVendasController < InheritedResources::Base
     
     def clone
         @pedido_venda_old = PedidoVenda.find(params[:id])
-        @pedido_venda_old_items = @pedido_venda_old.pedido_venda_items
-        @pedido_venda = PedidoVenda.create(@pedido_venda_old.attributes.merge(:id => ''))
-        @pedido_venda.pedido_venda_items = @pedido_venda_old_items 
-        redirect_to edit_pedido_venda_path(@pedido_venda)
-        flash[:notice] = 'Pedido de venda duplicado!' 
+        @pedido_venda = @pedido_venda_old.dup
+         @pedido_venda_old.pedido_venda_items.each do |pedido_venda|
+            @pedido_venda.pedido_venda_items.new([
+               :material_id => pedido_venda.material_id,
+               :produto_id => pedido_venda.produto_id,
+               :quantidade => pedido_venda.quantidade,
+               :preco => pedido_venda.preco])
+        end 
+         render "new"
     end
     
     

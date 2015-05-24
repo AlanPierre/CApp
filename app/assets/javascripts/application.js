@@ -19,6 +19,7 @@
 
 $(document).ready(function($) {
     $("input[type=text].currency").setMask('decimal');
+    $("input[type=text].total").setMask('decimal');
     $("input[type=text].date_time").setMask('date');
     $("input[type=text].cnpj").setMask('cnpj');
     $("input[type=text].cep").setMask('cep');

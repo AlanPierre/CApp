@@ -5,9 +5,8 @@ ActiveAdmin.register User do
   index do
     selectable_column
     id_column
-    column :login
-    column :email
     column :name
+    column :email
     column :current_sign_in_at
     column :created_at
     actions
@@ -17,9 +16,8 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs "User" do
-      f.input :login
+    f.input :name
       f.input :email
-      f.input :name
       f.input :password
       f.input :password_confirmation
       f.input :departamento_id,  :as => :select, :collection => Departamento.all

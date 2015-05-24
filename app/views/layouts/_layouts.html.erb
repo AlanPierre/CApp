@@ -23,7 +23,7 @@
                    <small>Cliente:</small> <%= layout.cliente.nome_fantasia %> <br/>
                   <small>Solicitado em:</small> <%= l(layout.data_aprovacao) if layout.data_aprovacao %>  <br/>
                  <small>
-                     Produto: <%= layout.produto.name %> - <%= layout.material.name %>
+                     Produto: <%= layout.produto.name if layout.produto %> - <%= layout.material.name if layout.material %>
                 </small>
 
               </div>

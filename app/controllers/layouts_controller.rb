@@ -21,11 +21,10 @@ class LayoutsController < InheritedResources::Base
     end
 
 
-        def clone
-        @layout_old = layout.find(params[:id])
-        @layout = layout.create(@layout_old.attributes.merge(:id => ''))
-        redirect_to edit_layout_path(@layout)
-        flash[:notice] = 'Layout duplicado!' 
+    def clone
+       @layout_old = Layout.find(params[:id])
+        @layout = @layout_old.dup
+         render "new"
     end
     
     

@@ -10,11 +10,19 @@
         <div class="box box-success">
             <div class="box-header">
                 <h3 class="box-title"><small>Código:</small> <%= orcamento.id %> </h3>
-                 <%if orcamento.orcamento_status_id == 2 %>
+            <%if orcamento.orcamento_status_id == 2 || orcamento.orcamento_status_id == 5  %>
                 <span class="pull-right label label-danger"><%= orcamento.orcamento_status.name if orcamento.orcamento_status %></span>
-            <%else%>
+                
+            <%elsif orcamento.orcamento_status_id == 6%>
+            <span class="pull-right label label-warning"><%= orcamento.orcamento_status.name if orcamento.orcamento_status %></span>
+
+            <%elsif orcamento.orcamento_status_id == 1%>
                 <span class="pull-right label label-success"><%= orcamento.orcamento_status.name if orcamento.orcamento_status %></span>
+            
+               <%else%>
+            <span class="pull-right label label-primary"><%= orcamento.orcamento_status.name if orcamento.orcamento_status %></span>
             <%end%>
+
 
             </div>
             <div class="box-body">

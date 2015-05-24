@@ -22,11 +22,16 @@ class OrcamentosController < InheritedResources::Base
     
     def clone
         @orcamento_old = Orcamento.find(params[:id])
-        @orcamento_old_items = @orcamento_old.orcamento_items
-        @orcamento = Orcamento.create(@orcamento_old.attributes.merge(:id => ''))
-        @orcamento.orcamento_items = @orcamento_old_items 
-        redirect_to edit_orcamento_path(@orcamento)
-        flash[:notice] = 'Orçamento duplicado!' 
+        @orcamento = @orcamento_old.dup
+         @orcamento_old.orcamento_items.each do |orcamento_item|
+            @orcamento.orcamento_items.new([
+               :material_id => orcamento_item.material_id,
+               :produto_id => orcamento_item.produto_id,
+               :quantidade => orcamento_item.quantidade,
+               :preco => orcamento_item.preco,
+                :descricao => orcamento_item.descricao])
+        end 
+         render "new"
     end
     
   private

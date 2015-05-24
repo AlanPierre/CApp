@@ -68,6 +68,8 @@
     <div class="col-md-2 col-xs-6 pull-right">
             <%=link_to "Imprimir", [@pedido_venda, :print],  :class => "btn btn-block btn-default btn-flat", :target => '_blank'%>
         </div>
+    <div class="col-md-2 col-xs-6 pull-right">
+            <%=link_to "Duplicar", clone_pedido_venda_path(params[:id]),  :class => "btn btn-block btn-default btn-flat",  data: { confirm: 'Deseja duplicar este pedido de venda?' } %>
      <%end%>
 </div>
 

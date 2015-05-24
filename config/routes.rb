@@ -10,8 +10,7 @@ Rails.application.routes.draw do
             get :clone
         end
       end
-    
-    
+        
   resources :orcamentos do
       get '/print/' => "print#orcamento_print"
         member do
@@ -20,6 +19,9 @@ Rails.application.routes.draw do
   end
   resources :pedido_vendas do
       get '/print/' => "print#pedido_venda_print"
+        member do
+            get :clone
+        end
   end
   resources :clientes do
       get '/print/' => "print#cliente_print"
