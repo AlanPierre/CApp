@@ -68,6 +68,20 @@ class OrdemProducaosController < InheritedResources::Base
             format.js
         end 
     end
+    
+        
+    def clone
+        @ordem_producao_old = OrdemProducao.find(params[:id])
+        @ordem_producao = @ordem_producao_old.dup
+         @ordem_producao_old.ordem_producao_items.each do |ordem_producao|
+            @ordem_producao.ordem_producao_items.new([
+               :material_id => ordem_producao.material_id,
+               :produto_id => ordem_producao.produto_id,
+               :quantidade => ordem_producao.quantidade])
+        end 
+         render "new"
+    end
+    
 
     
   private

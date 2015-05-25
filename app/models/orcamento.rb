@@ -65,7 +65,7 @@ class Orcamento < ActiveRecord::Base
      def calculate_totals
         orcamento_items.map do |i|
             i.subtotal
-        end.sum 
+        end.sum  
     end
      
 

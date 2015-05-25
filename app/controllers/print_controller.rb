@@ -16,4 +16,10 @@ class PrintController < ApplicationController
         @orcamento_items = @orcamento.orcamento_items
         render '/orcamentos/print'
     end 
+    
+        def ordem_producao_print  
+        @ordem_producao = OrdemProducao.find(params[:ordem_producao_id])
+        @ordem_producao_items = @ordem_producao.ordem_producao_items
+        render '/ordem_producao/print'
+    end 
 end

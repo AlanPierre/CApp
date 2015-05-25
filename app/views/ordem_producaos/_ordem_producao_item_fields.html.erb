@@ -16,7 +16,7 @@
             <%= f.select :produto_id, options_for_select(@produtos.collect { |produto|
     [produto.name, produto.id] }, 0), {}, { id: var, onchange: "DynamicSelectOPMaterial()", :class => 'select optional form-control produtos'}%>
             <%else %>
-<%= f.input :produto_id, collection: Produto.all ,input_html: { id: var, onchange: "DynamicSelectOPMaterial()", :class => 'select optional form-control produtos'} %>
+<%= f.input :produto_id, collection: Produto.where(id: f.object.produto_id) ,input_html: { id: var, onchange: "DynamicSelectOPMaterial()", :class => 'select optional form-control produtos'} %>
             <%end %>
           
         </div>

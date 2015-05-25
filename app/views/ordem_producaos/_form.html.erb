@@ -5,14 +5,11 @@
         <div class="col-md-2 pull-left">
             <h3 class="no-margin box-title">Código:<%= f.object.id%> </h3>
         </div>
-        <div class="col-md-2 col-xs-6 pull-right">
-            <%=  f.submit "Salvar", class:"btn btn-block btn-success btn-flat", :onclick => 'SubmitAndRemoveMask()' %>
-        </div>
     </div>
     <div class="box-body">    
         
     <div class="col-sm-6">
-            <%= f.input :cliente_id,:collection =>  Cliente.where(cliente_status_id: 1),:label_method => :nome_fantasia,:value_method => :id,:label => "Cliente" ,:include_blank => true, input_html: {:id => 'cliente'} %>
+            <%= f.input :cliente_id,:collection =>  Cliente.where(cliente_status_id: 1),:label_method => :nome_fantasia,:value_method => :id,:label => "Cliente" ,:include_blank => true, input_html: {:id => 'cliente', :onchange=> 'GetConfigClientesOP()'} %>
         </div>
         <div class="col-sm-3">
              <%=f.input :data_solicitacao,  :as => :date_time, :label =>"Solicitado em", input_html: { :"data-inputmask" => "'alias': 'dd/mm/yyyy'",  :"data-mask"=>"" }%>
@@ -85,4 +82,17 @@
         </fieldset>
         </div><!-- /.box-body -->
       </div>
+
+<div class="actions-bar row">
+    <div class="col-md-2 col-xs-6 pull-right">
+            <%= f.submit "Salvar", class:"btn btn-block btn-success btn-flat", :onclick => 'SubmitAndRemoveMask()' %>
+        </div>
+        <%if f.object.id.present? %>
+    <div class="col-md-2 col-xs-6 pull-right">
+            <%=link_to "Imprimir", [@ordem_producao, :print],  :class => "btn btn-block btn-default btn-flat", :target => '_blank'%>
+        </div>
+    <div class="col-md-2 col-xs-6 pull-right">
+            <%=link_to "Duplicar", clone_ordem_producao_path(params[:id]),  :class => "btn btn-block btn-default btn-flat",  data: { confirm: 'Deseja duplicar esta ordem de produção?' } %>
+     <%end%>
+</div>
 <% end %>

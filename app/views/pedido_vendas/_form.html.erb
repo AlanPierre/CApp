@@ -50,7 +50,7 @@
                     <%= link_to_add_association '+', f, :pedido_venda_items, :class => "btn  btn-default btn-flat"   %>
                 </div>
                 <div class="col-sm-2 pull-right">
-                    <%= f.input :calculate_totals, as: :currency, :label => "Total", :disabled => true,  input_html: { class: 'total', id: 'total' } %> 
+                     <%= f.input :calculate_totals, :as => :currency, :label => "Total", :disabled => true, input_html: { class: 'total',   id: 'total',  alt: "decimal", :value => (number_with_precision(f.object.calculate_totals, :precision => 2) || 0)} %>
                     </div>
         </fieldset>
         </div><!-- /.box-body -->

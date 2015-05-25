@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   resources :ordem_producaos do
       get "1/update_produtos_op" => "ordem_producaos#update_produtos_op"
+       get '/print/' => "print#ordem_producao_print"
+
+            member do
+            get :clone
+        end
   end
 
     
